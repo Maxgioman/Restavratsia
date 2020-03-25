@@ -1,0 +1,12 @@
+.disp-flex{
+    display: flex;
+}
+.flex-dir-column{
+    flex-direction: column;
+}
+.flex-dir-row{
+    flex-direction: row;
+}
+.justify-cont-space-btw{
+    justify-content: space-between;
+}
