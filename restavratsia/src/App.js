@@ -62,7 +62,7 @@ export default function BasicExample() {
 
 function Home() {
   return (
-      <div>
+      <div className="disp-flex justify-cont-center">
         <h2>This is home</h2>
       </div>
   );
@@ -70,7 +70,7 @@ function Home() {
 
 function About() {
   return (
-      <div>
+      <div className="disp-flex justify-cont-center">
         <h2>This is smth about</h2>
       </div>
   );
@@ -78,7 +78,7 @@ function About() {
 
 function Dashboard() {
   return (
-      <div>
+      <div className="disp-flex justify-cont-center">
         <h2>this is dashboard</h2>
       </div>
   );

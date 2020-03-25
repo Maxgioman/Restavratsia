@@ -10,3 +10,6 @@
 .justify-cont-space-btw{
     justify-content: space-between;
 }
+.justify-cont-center{
+    justify-content: center;
+}
