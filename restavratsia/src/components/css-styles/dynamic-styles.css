@@ -1,0 +1,174 @@
+#block1-sec1 {
+  background-image: url("images/lestnitsa_arhitektura_zdanie_152333_1920x1080.jpg");
+}
+
+#sec3 {
+  background-image: url("images/architecture_structure_symmetry_bw_117554_1920x1080.jpg");
+}
+
+#text-sec3 {
+  border: none;
+}
+
+.text-sec3-font-size {
+  font-size: 25px;
+}
+
+#sec5-textblock {
+  height: 90%;
+  max-width: inherit;
+}
+
+#footer-block1 {
+  height: 65%;
+}
+
+#footer-block2 {
+  height: 35%;
+}
+
+#sec4-text {
+  border: none;
+  height: 80%;
+}
+
+#logo {
+  height: 75px;
+  width: 230px;
+  margin-left: 10px;
+}
+
+#section2, #section3 {
+  background-color: white;
+}
+
+#block1-sec2 {
+  background-color: white;
+  width: 50%;
+  height: 100%;
+}
+
+#img-sec2-block1 {
+  width: 95%;
+  height: 90%;
+}
+
+#block2-sec2 {
+  background-color: white;
+  width: 50%;
+  height: 100%;
+}
+
+#text-block, #devs-info {
+  border: solid lightgrey 1px;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 25px 10px 25px 10px;
+  height: 90%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#text1-1 {
+  text-align: center;
+  font-family: Monospace;
+  font-weight: bold;
+  font-size: 30px;
+  text-indent: 0;
+  color: grey;
+}
+
+#block2-sec3 {
+  background-color: white;
+  width: 40%;
+  height: 100%;
+}
+
+#devs-list {
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
+
+#login-section {
+  background-image: url("images/an_vision-3Ic5nzXzOf4-unsplash (1).jpg");
+}
+
+#login-container {
+  background-color: transparent;
+}
+
+#div-input, #div-btn {
+  width: 100%;
+  height: 40%;
+}
+
+#login-company-btn, #login-customer-btn {
+  width: 50%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#login-customer-btn:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+#login-company-btn:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+#login-company-btn {
+  border-left: 1px solid lightgray;
+  border-top-right-radius: 19px;
+}
+
+#login-customer-btn {
+  border-right: 1px solid lightgray;
+  border-top-left-radius: 19px;
+}
+
+#btn-login-back {
+  align-items: flex-start;
+  margin-top: 15px;
+}
+
+#btn-forgot-pass {
+  align-items: flex-end;
+}
+
+#company-pic, #customer-pic {
+  background-color: black;
+  color: white;
+  -webkit-transition: 1.5s ease;
+  /* Safari and Chrome */
+  -moz-transition: 1.5s ease;
+  /* Firefox 4 */
+  -o-transition: 1.5s ease;
+  /* Opera */
+}
+
+#company-pic:hover {
+  background-color: white;
+  color: black;
+  opacity: 1;
+}
+
+#customer-pic:hover {
+  background-color: white;
+  color: black;
+  opacity: 1;
+}
+
+#reg-body {
+  background-image: url("images/257.jpg");
+}
+
+#reg-cust-body, #reg-comp-body {
+  background-image: url("images/462757.jpg");
+}
+
+/*# sourceMappingURL=dynamic-styles.css.map */

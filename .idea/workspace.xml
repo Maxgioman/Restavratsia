@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="92927bd3-93d4-4d85-9c8e-960e8e230d6f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/sign-in.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/sign-up.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/dynamic-styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/257.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/3333.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/462757.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/Become-a-Full-Stack-Developers.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/Crystal-Wallpaper-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/an_vision-3Ic5nzXzOf4-unsplash (1).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/architecture_structure_symmetry_bw_117554_1920x1080.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/asus-rog-phone-1920x1080-20599.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/hong-kong-buildings-airplane-modern-architecture.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/img-sec2-block1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/lestnitsa_arhitektura_zdanie_152333_1920x1080 – original.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/lestnitsa_arhitektura_zdanie_152333_1920x1080.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/logo_transparent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/unnamed.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/logout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/main-styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/main-styles.css" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Zl1QIGCnn5ZZFUxJOflotnie6e" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adria\Desktop\RestavratsiaRepos\restavratsia\src\components" />
+      <recent name="C:\Users\adria\Desktop\RestavratsiaRepos\restavratsia\src\css-styles" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="92927bd3-93d4-4d85-9c8e-960e8e230d6f" name="Default Changelist" comment="" />
+      <created>1585398849472</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585398849472</updated>
+      <workItem from="1585398854679" duration="3892000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
