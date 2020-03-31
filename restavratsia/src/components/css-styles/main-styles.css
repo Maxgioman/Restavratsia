@@ -192,22 +192,6 @@ footer {
     align-items: center;
 }
 
-.disp-flex{
-    display: flex;
-}
-.flex-dir-column{
-    flex-direction: column;
-}
-.flex-dir-row{
-    flex-direction: row;
-}
-.justify-cont-space-btw{
-    justify-content: space-between;
-}
-.justify-cont-center{
-    justify-content: center;
-}
-
 .flex-column-start {
     display: flex;
     flex-direction: column;
@@ -357,7 +341,6 @@ footer {
 
 .div-btn-block {
     width: inherit;
-    height: 50%;
     display: flex;
     justify-content: center;
 }
