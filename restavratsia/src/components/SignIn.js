@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './css-styles/main-styles.css';
 import './css-styles/dynamic-styles.css';
-import SignInCustomer from "./SignInCustomer";
-import SignInCompany from "./SignInCompany";
-import Buttons from "./Buttons";
+import SignInForm from "./SignInForm";
 
 class SignIn extends Component {
     render() {
@@ -19,18 +17,18 @@ class SignIn extends Component {
                         <div className="form">
                             <div id="login-choose" className="choosing">
                                 <Link to={'/sign-in/as-customer'} id="login-customer-btn" className="button-class">
-                                    <p>login as Customer</p>
+                                    <p>Customer</p>
                                 </Link>
                                 <Link to={'/sign-in/as-company'} id="login-company-btn" className="button-class">
-                                    <p>login as Company</p>
+                                    <p>Company</p>
                                 </Link>
                             </div>
                             <Switch>
                                 <Route path={'/sign-in/as-customer'}>
-                                    <SignInCustomer />
+                                    <SignInForm usertype={'customer'} />
                                 </Route>
                                 <Route path={'/sign-in/as-company'}>
-                                    <SignInCompany />
+                                    <SignInForm usertype={'company'} />
                                 </Route>
                                 <Route path={'/sign-in'}>
                                     <div id="div-choose" className="flex-center">
@@ -38,7 +36,11 @@ class SignIn extends Component {
                                     </div>
                                 </Route>
                             </Switch>
-                            <Buttons/>
+                            <div id="div-btn" className="btn-form">
+                                <div id="login-back-btn" className="div-btn-block">
+                                    <Link to="/"  id="btn-back"  className="button-class login-form-btn">back to main page</Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>

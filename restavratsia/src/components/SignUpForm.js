@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import {
-    Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-class SignUpCustomer extends Component {
+class SignUpForm extends Component {
     render() {
+        let form;
+        if(this.props.usertype === 'customer')
+            form = customer();
+        else
+            form = company();
+
         return (
             <section id="reg-user-sec" className="section flex-column-center">
                 <div id="reg-user-div" className="container col-11 flex-column-center form">
@@ -23,23 +27,10 @@ class SignUpCustomer extends Component {
                                     </div>
                                 </fieldset>
                             </div>
-                            <div id="reg-div-3-center" className="col-4 col-4 pr-1 pl-1">
-                                <fieldset className="fieldset text p-3">
-                                    <legend className="flex-row-center pl-1"><div className="number flex-center text-bold text-align-center pr-3">2</div> Your profile</legend>
-                                    <div className="input-text flex-center">
-                                        <p className="text-form text col-11">Name</p>
-                                        <input type="text" className="input-field col-11" placeholder="Enter your name" />
-                                        <p className="text-form text col-11">Surname</p>
-                                        <input type="text" className="input-field col-11" placeholder="Enter your surname" />
-                                        <p className="text-form text col-11">Email</p>
-                                        <input type="text" className="input-field col-11" placeholder="Enter your email" />
-                                    </div>
-                                </fieldset>
-                            </div>
+                            {form}
                             <div id="reg-div-3-right" className="col-4 pr-1 pl-1 height-inherit">
                                 <fieldset className="fieldset text p-3">
                                     <legend className="flex-row-center pl-1"><div className="number flex-center text-bold text-align-center pr-3">3</div> Address</legend>
-
                                     <div className="input-text flex-center p-2">
                                         <p className="text-form text col-11 p-2">Phone number</p>
                                         <input type="text" className="input-field col-11 p-2" placeholder="Enter your phone number" />
@@ -69,8 +60,8 @@ class SignUpCustomer extends Component {
                         </div>
                     </div>
                     <div id='div-btn-reg' className="flex-row-center col-12">
-                        <Link to={'/'} className="button-class login-form-btn p-2">back</Link>
-                        <Link to={'/sign-up'} className="button-class login-form-btn p-2">sign up</Link>
+                        <Link to={'/sign-up'} className="button-class login-form-btn p-2">back</Link>
+                        <Link to={'/sign-in'} className="button-class login-form-btn p-2">sign up</Link>
                     </div>
                 </div>
             </section>
@@ -78,4 +69,53 @@ class SignUpCustomer extends Component {
     }
 }
 
-export default SignUpCustomer;
+function customer() {
+    return(
+        <div id="reg-div-3-center" className="col-4 col-4 pr-1 pl-1">
+            <fieldset className="fieldset text p-3">
+                <legend className="flex-row-center pl-1"><div className="number flex-center text-bold text-align-center pr-3">2</div> Your profile</legend>
+                <div className="input-text flex-center">
+                    <p className="text-form text col-11">Name</p>
+                    <input type="text" className="input-field col-11" placeholder="Enter your name" />
+                    <p className="text-form text col-11">Surname</p>
+                    <input type="text" className="input-field col-11" placeholder="Enter your surname" />
+                    <p className="text-form text col-11">Email</p>
+                    <input type="text" className="input-field col-11" placeholder="Enter your email" />
+                </div>
+            </fieldset>
+        </div>
+    );
+}
+
+function company() {
+    return(
+        <div id="reg-div-3-center" className="col-4 col-4 pr-1 pl-1">
+            <fieldset className="fieldset text p-3">
+                <legend className="flex-row-center pl-1"><div className="number flex-center text-bold text-align-center pr-3">2</div> Your profile</legend>
+                <div className="input-text flex-center">
+                    <p className="text-form text col-11">Company name</p>
+                    <input type="text" className="input-field col-11" placeholder="Enter your name" />
+                    <p className="text-form text col-11">Specialisation</p>
+                    <select type="text" className="input-field col-11" name="company-specialisation">
+                        <optgroup label="group 1">
+                            <option value="spec1">spec1</option>
+                            <option value="spec2">spec2</option>
+                            <option value="spec3">spec3</option>
+                            <option value="spec4">spec4</option>
+                        </optgroup>
+                        <optgroup label="group 2">
+                            <option value="spec1">spec1</option>
+                            <option value="spec2">spec2</option>
+                            <option value="spec3">spec3</option>
+                            <option value="spec4">spec4</option>
+                        </optgroup>
+                    </select>
+                    <p className="text-form text col-11">Email</p>
+                    <input type="text" className="input-field col-11" placeholder="Enter your email" />
+                </div>
+            </fieldset>
+        </div>
+    );
+}
+
+export default SignUpForm;

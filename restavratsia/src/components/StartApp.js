@@ -7,8 +7,7 @@ import Header from "./header";
 import MainPage from "./MainPage";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import SignUpCustomer from "./SignUpCustomer";
-import SignUpCompany from "./SignUpCompany";
+import SignUpForm from "./SignUpForm";
 
 class StartApp extends Component {
     render() {
@@ -16,8 +15,12 @@ class StartApp extends Component {
             <div>
                 <Header />
                 <Switch>
-                    <Route path={'/sign-up/as-customer'} component={SignUpCustomer} />
-                    <Route path={'/sign-up/as-company'} component={SignUpCompany} />
+                    <Route path={'/sign-up/as-customer'}>
+                        <SignUpForm usertype={'customer'} />
+                    </Route>
+                    <Route path={'/sign-up/as-company'}>
+                        <SignUpForm usertype={'company'} />
+                    </Route>
                     <Route path={'/sign-in'} component={SignIn} />
                     <Route path={'/sign-up'} component={SignUp} />
                     <Route exact path={'/'} component={MainPage} />
