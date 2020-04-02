@@ -4,9 +4,17 @@ import './css-styles/styles.css'
 import './css-styles/individual-styles.css';
 
 class Header extends Component {
-
+    constructor(props){
+        super(props);
+        this.state = {loggedIn: false};
+    };
 
     render() {
+        let btns;
+        if(this.state.loggedIn)
+            btns = logged_in(this.props.username);
+        else
+            btns = sign_btns();
 
         return (
             <header className="d-flex-spacebtw">
@@ -19,8 +27,7 @@ class Header extends Component {
                         <a href="#sec3" className="menu-link">WHY WE?</a>
                         <a href="#sec4" className="menu-link">ABOUT US</a>
                         <a href="#sec5" className="menu-link">CONTACTS</a>
-                        <Link to="/sign-in" className="menu-link sign-btn">|sign in|</Link>
-                        <Link to="/sign-up" className="menu-link sign-btn">|sign up|</Link>
+                        {btns}
                     </div>
                 </nav>
             </header>
@@ -28,6 +35,21 @@ class Header extends Component {
     }
 }
 
+function sign_btns() {
+    return(
+        <div className='flex-row-center'>
+            <Link to="/sign-in" className="menu-link sign-btn">|sign in|</Link>
+            <Link to="/sign-up" className="menu-link sign-btn">|sign up|</Link>
+        </div>
+    );
+}
 
+function logged_in(username) {
+    return(
+      <div>
+          <a className="menu-link" href='#'>{username}</a>
+      </div>
+    );
+}
 
 export default Header;

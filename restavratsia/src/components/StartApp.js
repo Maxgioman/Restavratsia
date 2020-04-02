@@ -14,7 +14,7 @@ class StartApp extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header username={'_user_'} />
                 <Switch>
                     <Route path={'/sign-up/as-customer'}>
                         <SignUpForm usertype={'customer'} />

@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92927bd3-93d4-4d85-9c8e-960e8e230d6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/images/dark-city.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/individual-styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/individual-styles.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/individual-styles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/styles.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/styles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/SignIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/SignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/SignInForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/SignUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/SignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/SignUpForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restavratsia/src/components/StartApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/StartApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/css-styles/dynamic-styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/css-styles/main-styles.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/restavratsia/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/header.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,7 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585398849472</updated>
       <workItem from="1585398854679" duration="3892000" />
-      <workItem from="1585821674493" duration="11869000" />
+      <workItem from="1585821674493" duration="13761000" />
     </task>
     <servers />
   </component>
