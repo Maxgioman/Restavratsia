@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import './css-styles/main-styles.css'
-import './css-styles/dynamic-styles.css';
+import './css-styles/styles.css'
+import './css-styles/individual-styles.css';
 
 class Header extends Component {
+
+
     render() {
+
         return (
             <header className="d-flex-spacebtw">
                 <div className="col-3">
@@ -12,13 +15,19 @@ class Header extends Component {
                 </div>
                 <nav className="menu flex-end-center col-9">
                     <div className="flex-row-center" >
-                        <Link to="/sign-in" className="menu-link">sign in</Link>
-                        <Link to="/sign-up" className="menu-link">sign up</Link>
+                        <a href="#sec2" className="menu-link">INFO</a>
+                        <a href="#sec3" className="menu-link">WHY WE?</a>
+                        <a href="#sec4" className="menu-link">ABOUT US</a>
+                        <a href="#sec5" className="menu-link">CONTACTS</a>
+                        <Link to="/sign-in" className="menu-link sign-btn">|sign in|</Link>
+                        <Link to="/sign-up" className="menu-link sign-btn">|sign up|</Link>
                     </div>
                 </nav>
             </header>
         );
     }
 }
+
+
 
 export default Header;

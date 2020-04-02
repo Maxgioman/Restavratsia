@@ -5,8 +5,8 @@ import {
     Link
 } from "react-router-dom";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './css-styles/main-styles.css';
-import './css-styles/dynamic-styles.css';
+import './css-styles/styles.css';
+import './css-styles/individual-styles.css';
 import SignInForm from "./SignInForm";
 
 class SignIn extends Component {

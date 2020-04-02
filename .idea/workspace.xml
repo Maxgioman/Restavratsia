@@ -2,33 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92927bd3-93d4-4d85-9c8e-960e8e230d6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/sign-in.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/sign-up.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/dynamic-styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/257.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/3333.jfif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/462757.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/Become-a-Full-Stack-Developers.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/Crystal-Wallpaper-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/an_vision-3Ic5nzXzOf4-unsplash (1).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/architecture_structure_symmetry_bw_117554_1920x1080.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/asus-rog-phone-1920x1080-20599.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/hong-kong-buildings-airplane-modern-architecture.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/img-sec2-block1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/lestnitsa_arhitektura_zdanie_152333_1920x1080 – original.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/lestnitsa_arhitektura_zdanie_152333_1920x1080.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/logo_transparent.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/images/unnamed.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/logout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/restavratsia/src/main-styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/css-styles/main-styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/images/dark-city.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/individual-styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/individual-styles.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/individual-styles.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/styles.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/css-styles/styles.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restavratsia/src/components/footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/SignIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/SignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/SignInForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/SignUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/SignUpForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/SignUpForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/StartApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/StartApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/css-styles/dynamic-styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/css-styles/main-styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restavratsia/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/restavratsia/src/components/header.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="SCSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,13 +47,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -76,6 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585398849472</updated>
       <workItem from="1585398854679" duration="3892000" />
+      <workItem from="1585821674493" duration="11869000" />
     </task>
     <servers />
   </component>
@@ -87,7 +99,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

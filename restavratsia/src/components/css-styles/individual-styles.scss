@@ -11,17 +11,11 @@
 .text-sec3-font-size{
   font-size: 25px;
 }
-#sec5-textblock{
-  height: 90%;
-  max-width: inherit;
-}
 
 #footer-block1{
   height: 65%;
 }
-#footer-block2{
-  height: 35%;
-}
+
 
 #sec4-text{
   border: none;
@@ -202,4 +196,20 @@
 #div-from-reg-inner{
   height: 95%;
   align-items: baseline;
+}
+
+#sec5{
+  background-image: url("images/dark-city.jpg");
+}
+
+#sec5-textblock{
+  height: 85%;
+  max-width: inherit;
+  background-color: white;
+  border: none;
+}
+
+.sign-btn{
+  font-size: 15px;
+  padding: 0;
 }

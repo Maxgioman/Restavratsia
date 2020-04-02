@@ -8,6 +8,7 @@ import MainPage from "./MainPage";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SignUpForm from "./SignUpForm";
+import Footer from "./footer";
 
 class StartApp extends Component {
     render() {
@@ -25,6 +26,7 @@ class StartApp extends Component {
                     <Route path={'/sign-up'} component={SignUp} />
                     <Route exact path={'/'} component={MainPage} />
                 </Switch>
+                <Footer />
             </div>
         );
     }

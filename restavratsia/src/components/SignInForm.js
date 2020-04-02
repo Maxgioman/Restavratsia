@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import './css-styles/main-styles.css';
-import './css-styles/dynamic-styles.css';
+import './css-styles/styles.css';
+import './css-styles/individual-styles.css';
 import {Link} from "react-router-dom";
 
 class SignInForm extends Component {
