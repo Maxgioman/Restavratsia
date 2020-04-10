@@ -193,6 +193,10 @@
   align-items: stretch;
 }
 
+.text-indent-0{
+  text-indent: 0;
+}
+
 #div-from-reg-inner{
   height: 95%;
   align-items: baseline;
@@ -212,4 +216,8 @@
 .sign-btn{
   font-size: 15px;
   padding: 0;
+}
+
+#sign-up-choose{
+  height: 70%;
 }

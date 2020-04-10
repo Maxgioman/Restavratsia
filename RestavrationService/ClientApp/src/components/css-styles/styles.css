@@ -90,6 +90,12 @@ footer {
   margin: 0 auto;
 }
 
+.btn {
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
 .background-transparent {
   background-color: transparent;
 }
@@ -275,10 +281,10 @@ footer {
 }
 
 .form {
-  height: 70%;
+  height: 100%;
   width: 100%;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.8;
   border-radius: 20px;
 }
 
