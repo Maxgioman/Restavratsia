@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -95,7 +95,69 @@ export default function Signup(props) {
     },
     validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
+      if (props.usertype === "customer") {
+        alert(
+          JSON.stringify({
+            Login: values.username,
+            Password: values.password,
+            PasswordConfirm: values.passwordConfirmation,
+            Email: values.email,
+            Name: values.name,
+            Surname: values.surname,
+            Phone: values.phone,
+          })
+        );
+        axios
+          .post(
+            "api/Account/Register/user",
+            JSON.stringify({
+              Login: values.username,
+              Password: values.password,
+              PasswordConfirm: values.passwordConfirmation,
+              Email: values.email,
+              Name: values.name,
+              Surname: values.surname,
+              Phone: values.phone,
+            })
+          )
+          .then((resolve) => {
+            console.log(resolve);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        alert(
+          JSON.stringify({
+            Login: values.username,
+            Password: values.password,
+            PasswordConfirm: values.passwordConfirmation,
+            Email: values.email,
+            CompanyName: values.name,
+            CompanySpec: values.surname,
+            Phone: values.phone,
+          })
+        );
+        axios
+          .post(
+            "api/Account/Register/user",
+            JSON.stringify({
+              Login: values.username,
+              Password: values.password,
+              PasswordConfirm: values.passwordConfirmation,
+              Email: values.email,
+              CompanyName: values.name,
+              CompanySpec: values.surname,
+              Phone: values.phone,
+            })
+          )
+          .then((resolve) => {
+            console.log(resolve);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
   });
   const cityOptions = [
