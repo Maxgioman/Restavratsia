@@ -120,8 +120,8 @@ export default function Signup(props) {
               Phone: values.phone,
             })
           )
-          .then((resolve) => {
-            console.log(resolve);
+          .then((response) => {
+            console.log(response);
           })
           .catch((error) => {
             console.log(error);
