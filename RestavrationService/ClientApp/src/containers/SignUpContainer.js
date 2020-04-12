@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Input from "../components/HTMLelements/Input";
-import Select from "../components/HTMLelements/Select";
+import Input from "../components/forms/Input";
+import Select from "../components/forms/Select";
 import { Link } from "react-router-dom";
-import Button from "../components/HTMLelements/Button";
+import axios from "axios";
+import Button from "../components/forms/Button";
 
 class SignUpContainer extends Component {
   constructor(props) {
@@ -67,48 +68,55 @@ class SignUpContainer extends Component {
   }
 
   handleInput(e) {
-    let value = e.target.value;
+    /*let value = e.target.value;
     let name = e.target.name;
-    this.setState(
-      (prevState) => ({
-        newUser: {
-          ...prevState.newUser,
-          [name]: value,
-        },
-      })
-      //() => console.log(this.state.newUser)
-    );
+    this.setState((prevState) => ({
+      newUser: {
+        ...prevState.newUser,
+        [name]: value,
+      },
+    }));*/
   }
 
-  handleConfirmPassword(e) {}
+  handleConfirmPassword(e) {
+    let value = e.target.value;
+    if (value !== this.state.newUser.password) {
+      alert("pass are not the same");
+    }
+  }
 
   handleFormSubmit(e) {
     e.preventDefault();
-    let userData;
-    if (this.props.usertype === "customer") {
-      userData = {
-        usertype: "customer",
-        username: this.state.newUser.username,
-        password: this.state.newUser.password,
-        name: this.state.newUser.firstName,
-        surname: this.state.newUser.surName,
-        email: this.state.newUser.email,
-        phone: this.state.newUser.phoneNumber,
-        address: this.state.newUser.address,
-      };
-    } else {
-      userData = {
-        usertype: "company",
-        username: this.state.newUser.username,
-        password: this.state.newUser.password,
-        companyName: this.state.newUser.companyName,
-        spec: this.state.newUser.companySpec,
-        email: this.state.newUser.email,
-        phone: this.state.newUser.phoneNumber,
-        address: this.state.newUser.address,
-      };
-    }
-    console.log(JSON.stringify(userData));
+    Array.prototype.forEach.call(e.target.elements, (element) => {
+      if (
+        element.type !== "fieldset" &&
+        element.type !== "submit" &&
+        element.name !== "passwordConfirmed"
+      ) {
+        let name = element.name;
+        let value = element.value;
+        console.log(this);
+        this.setState((prevState) => ({
+          newUser: {
+            ...prevState.newUser,
+            [name]: value,
+          },
+        }));
+      }
+    });
+    console.log(this.state.newUser);
+    //validation
+    /*axios
+      .post(
+        "https://jsonplaceholder.typicode.com/posts",
+        JSON.stringify(this.state.newUser)
+      )
+      .then((response) => {
+        alert("post success: status" + response.status);
+      })
+      .catch((error) => {
+        alert(error);
+      });*/
   }
 
   render() {
@@ -118,6 +126,7 @@ class SignUpContainer extends Component {
 
     return (
       <form
+        id="reg-form"
         className="col-12 form-sign-up form"
         onSubmit={this.handleFormSubmit}
       >
@@ -128,20 +137,18 @@ class SignUpContainer extends Component {
                 <legend className="flex-row-center pl-1">Account info</legend>
                 <div className="input-text flex-center mb-3">
                   <p className="text-form text col-12">Login</p>
-                  <Input
-                    className={"input-field col-12"}
-                    name={"username"}
-                    type={"text"}
-                    value={this.state.newUser.username}
-                    placeholder={"Enter your login"}
-                    handleChange={this.handleInput}
+                  <input
+                    id="username"
+                    name="username"
+                    type="username"
+                    onChange={formik.handleChange}
+                    value={formik.values.username}
                   />
                   <p className="text-form text col-12">Password</p>
                   <Input
                     className={"input-field col-12"}
                     name={"password"}
                     type={"password"}
-                    value={this.state.newUser.password}
                     placeholder={"Enter your password"}
                     handleChange={this.handleInput}
                   />
@@ -169,7 +176,6 @@ class SignUpContainer extends Component {
                     className={"input-field col-12 p-2"}
                     name={"phoneNumber"}
                     type={"text"}
-                    value={this.state.newUser.phoneNumber}
                     placeholder={"Enter your phone number"}
                     handleChange={this.handleInput}
                   />
@@ -177,7 +183,6 @@ class SignUpContainer extends Component {
                   <Select
                     name={"address"}
                     options={this.state.cityOptions}
-                    value={this.state.newUser.address}
                     placeholder={"Select your region"}
                     handleChange={this.handleInput}
                     className={"input-field col-12"}
@@ -191,13 +196,12 @@ class SignUpContainer extends Component {
           <Link to={"/sign-up"} className="button-class login-form-btn p-2">
             back
           </Link>
-          <Link to={"/sign-in"}>
-            <Button
-              action={this.handleFormSubmit}
-              className={"button-class login-form-btn p-2 btn"}
-              title={"Submit"}
-            />
-          </Link>
+          <Input
+            name={"sign-up-btn"}
+            type={"submit"}
+            value={"sign up"}
+            className={"button-class login-form-btn p-2 btn"}
+          />
         </div>
       </form>
     );
@@ -214,7 +218,6 @@ class SignUpContainer extends Component {
               className={"input-field col-12"}
               name={"firstName"}
               type={"text"}
-              value={this.state.newUser.firstName}
               placeholder={"Enter your name"}
               handleChange={this.handleInput}
             />
@@ -223,7 +226,6 @@ class SignUpContainer extends Component {
               className={"input-field col-12"}
               name={"surName"}
               type={"text"}
-              value={this.state.newUser.surName}
               placeholder={"Enter your surname"}
               handleChange={this.handleInput}
             />
@@ -232,7 +234,6 @@ class SignUpContainer extends Component {
               className={"input-field col-12"}
               name={"email"}
               type={"text"}
-              value={this.state.newUser.email}
               placeholder={"Enter your email"}
               handleChange={this.handleInput}
             />
@@ -253,7 +254,6 @@ class SignUpContainer extends Component {
               className={"input-field col-12"}
               name={"companyName"}
               type={"text"}
-              value={this.state.newUser.companyName}
               placeholder={"Enter your company name"}
               handleChange={this.handleInput}
             />
@@ -261,7 +261,6 @@ class SignUpContainer extends Component {
             <Select
               name={"companySpec"}
               options={this.state.specOptions}
-              value={this.state.newUser.companySpec}
               placeholder={"Select specialization"}
               handleChange={this.handleInput}
               className={"input-field col-12"}
@@ -271,7 +270,6 @@ class SignUpContainer extends Component {
               className={"input-field col-12"}
               name={"email"}
               type={"text"}
-              value={this.state.newUser.email}
               placeholder={"Enter your email"}
               handleChange={this.handleInput}
             />

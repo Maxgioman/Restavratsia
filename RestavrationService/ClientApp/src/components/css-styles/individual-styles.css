@@ -229,8 +229,12 @@
   padding: 0;
 }
 
-#sign-up-choose {
-  height: 70%;
+#sign-up-btn {
+  width: auto;
+}
+
+#reg-form {
+  height: 100%;
 }
 
 /*# sourceMappingURL=individual-styles.css.map */

@@ -19,6 +19,14 @@ html.scroll-smooth {
   scroll-behavior: smooth;
 }
 
+.errorValidationText {
+  color: red;
+  font-size: 15px;
+  text-align: justify;
+  width: 100%;
+  text-indent: 0;
+}
+
 header {
   position: fixed;
   background-color: black;
@@ -281,7 +289,7 @@ footer {
 }
 
 .form {
-  height: 100%;
+  height: 70%;
   width: 100%;
   background-color: black;
   opacity: 0.8;
@@ -1008,6 +1016,62 @@ body.overflow-hidden {
 
   .xxs-section-height-1x {
     height: 100vh;
+  }
+
+  .xxs-section-height-3x {
+    height: 300vh;
+  }
+
+  .xxs-section-height-2_5x {
+    height: 250vh;
+  }
+
+  .col-xxs-1 {
+    width: 8.33333%;
+  }
+
+  .col-xxs-2 {
+    width: 16.66667%;
+  }
+
+  .col-xxs-3 {
+    width: 25%;
+  }
+
+  .col-xxs-4 {
+    width: 33.33333%;
+  }
+
+  .col-xxs-5 {
+    width: 41.66667%;
+  }
+
+  .col-xxs-6 {
+    width: 50%;
+  }
+
+  .col-xxs-7 {
+    width: 58.33333%;
+  }
+
+  .col-xxs-8 {
+    width: 66.66667%;
+  }
+
+  .col-xxs-9 {
+    width: 75%;
+  }
+
+  .col-xxs-10 {
+    width: 83.33333%;
+  }
+
+  .col-xxs-11 {
+    width: 91.66667%;
+  }
+
+  .col-xxs-12 {
+    width: 100%;
   }
 }
 .p-1,
