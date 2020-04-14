@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/RestavratsiaRepos.iml" filepath="$PROJECT_DIR$/.idea/RestavratsiaRepos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RestavratsiaRepos(server+client).iml" filepath="$PROJECT_DIR$/.idea/RestavratsiaRepos(server+client).iml" />
     </modules>
   </component>
 </project>
