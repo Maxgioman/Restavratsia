@@ -134,28 +134,19 @@ export default function Signup(props) {
     },
     validationSchema,
     onSubmit: (values) => {
-      let newUser;
-      if (props.usertype === "customer") {
-        newUser = {
-          Login: values.username,
-          Password: values.password,
-          PasswordConfirm: values.passwordConfirmation,
-          Email: values.email,
-          Name: values.name + " " + values.surname,
-          isCompany: values.isCompany,
-          Phone: values.phone,
-        };
-      } else {
-        newUser = {
-          Login: values.username,
-          Password: values.password,
-          PasswordConfirm: values.passwordConfirmation,
-          Email: values.email,
-          Name: values.companyName,
-          isCompany: values.isCompany,
-          Phone: values.phone,
-        };
-      }
+      let newUser = {
+        Login: values.username,
+        Password: values.password,
+        PasswordConfirm: values.passwordConfirmation,
+        Email: values.email,
+        Name: "",
+        Surname: values.surname,
+        isCompany: values.isCompany,
+        Phone: values.phone,
+      };
+      if (props.usertype === "customer") newUser.Name = values.name;
+      else newUser.Name = values.companyName;
+
       alert(JSON.stringify(newUser));
       axios
         .post("api/account/register", JSON.stringify(newUser))
