@@ -7,12 +7,12 @@ class SignUpForm extends Component {
   render() {
     return (
       <section
-        id="reg-user-sec"
-        className="section flex-column-center xxs-section-height-2_5x"
+        id="reg-section"
+        className="background-responsive section flex-column-center section-height-2x"
       >
         <div
           id="reg-user-div"
-          className="container col-11 flex-column-center form"
+          className="container col-7 col-xxs-12 flex-column-center form"
         >
           <Signup usertype={this.props.usertype} />
         </div>

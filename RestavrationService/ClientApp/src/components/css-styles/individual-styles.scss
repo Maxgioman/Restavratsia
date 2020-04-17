@@ -159,10 +159,6 @@
   background-image: url("images/462757.jpg");
 }
 
-#reg-div-3-left, #reg-div-3-center, #reg-div-3-right{
-  height: inherit;
-}
-
 .fieldset{
   color: white;
   height: inherit;
@@ -199,7 +195,6 @@
 
 #div-from-reg-inner{
   height: 95%;
-  align-items: baseline;
 }
 
 #sec5{
@@ -224,4 +219,18 @@
 
 #reg-form{
   height: 100%;
+}
+
+#reg-h1, #reg-h3{
+  color: white;
+}
+#reg-h1{
+  font-size: 25px;
+}
+#reg-h3{
+  font-size: 15px;
+}
+
+#reg-section{
+  background-image: url("images/black-and-white-architecture-photography-1920x1200.jpg");
 }

@@ -6,38 +6,26 @@ import axios from "axios";
 export default function Signin(props) {
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
-      UserType: props.usertype,
       Login: "",
       Password: "",
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values));
-      if (props.usertype === "customer") {
-        axios
-          .post("api/for/login/customer/", JSON.stringify(values))
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        axios
-          .post("api/for/login/company/", JSON.stringify(values))
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
+      axios
+        .post("api/account/login", JSON.stringify(values))
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   });
 
   return (
     <form
       id="div-input"
-      className="input-form col-sm-11"
+      className="input-form col-sm-11 mt-4"
       onSubmit={handleSubmit}
     >
       <div className="input-text flex-center">
@@ -80,7 +68,7 @@ export default function Signin(props) {
           type="submit"
           className="button-class login-form-btn mt-2 btn"
         >
-          sign in as {props.usertype}
+          sign in
         </button>
       </div>
     </form>
