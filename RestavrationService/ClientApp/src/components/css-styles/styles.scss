@@ -405,6 +405,27 @@ body.overflow-hidden {
   height: 80%;
 }
 
+//section heights
+.section-height-3x {
+  height: 300vh;
+}
+
+.section-height-2_5x {
+  height: 250vh;
+}
+
+.section-height-2x {
+  height: 200vh;
+}
+
+.section-height-1_5x {
+  height: 150vh
+}
+
+.section-height-1_75x {
+  height: 175vh
+}
+
 .col-1 {
   width: 8.33333%;
 }
@@ -584,27 +605,27 @@ body.overflow-hidden {
     padding-top: 100px;
   }
 
-  .section-height-3x {
+  .lg-section-height-3x {
     height: 300vh;
   }
 
-  .section-height-2_5x {
+  .lg-section-height-2_5x {
     height: 250vh;
   }
 
-  .section-height-2x {
+  .lg-section-height-2x {
     height: 200vh;
   }
 
-  .section-height-1_5x {
+  .lg-section-height-1_5x {
     height: 150vh;
   }
 
-  .section-height-1_25x {
+  .lg-section-height-1_25x {
     height: 125vh;
   }
 
-  .section-height-1_125x {
+  .lg-section-height-1_125x {
     height: 112.5vh;
   }
 
@@ -1016,6 +1037,9 @@ body.overflow-hidden {
 
   .xxs-section-height-1x {
     height: 100vh;
+  }
+  .xxs-section-height-2x {
+    height: 200vh;
   }
   .xxs-section-height-3x {
     height: 300vh;
