@@ -148,8 +148,10 @@ export default function Signup(props) {
       else newUser.Name = values.companyName;
 
       alert(JSON.stringify(newUser));
-      axios
-        .post("api/account/register", JSON.stringify(newUser))
+      axios //поставити нормальну апішку з https://localhost...
+        .post("api/account/register", JSON.stringify(newUser), {
+          headers: { "Content-Type": "application/json" },
+        })
         .then((response) => {
           console.log(response);
         })
