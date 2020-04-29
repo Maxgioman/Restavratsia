@@ -6,6 +6,10 @@
   background-image: url("images/architecture_structure_symmetry_bw_117554_1920x1080.jpg");
 }
 
+#order-iface {
+  background-image: url("images/poloski_chernyie_seryie_belyie_linii_32.jpg");
+}
+
 #text-sec3 {
   border: none;
 }
@@ -16,6 +20,160 @@
 
 #footer-block1 {
   height: 65%;
+}
+
+.root {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.hdr-main {
+  position: fixed;
+  background-color: black;
+  height: auto;
+  width: 100%;
+  margin: 0;
+  opacity: 0.85;
+  z-index: 1;
+}
+
+@media screen and (max-width: 840px) {
+  .col-hdr-7 {
+    width: 58.33333%;
+  }
+
+  .col-hdr-5 {
+    width: 41.66667%;
+  }
+
+  .col-hdr-12 {
+    width: 100%;
+  }
+
+  .hdr-flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .hdr-d-flex {
+    display: flex;
+  }
+
+  .hdr-bg-black {
+    background-color: black;
+    opacity: 0.85;
+  }
+
+  .hdr-position-relative {
+    position: relative;
+  }
+
+  .hdr-flex-column {
+    flex-direction: column;
+  }
+
+  .hdr-justify-content-end {
+    justify-content: flex-end;
+  }
+
+  .hdr-align-items-center {
+    align-items: center;
+  }
+
+  .burger {
+    width: 50px;
+    height: 35px;
+  }
+
+  .burger span,
+.burger::before,
+.burger::after {
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    transform: translateX(-50%);
+    border-radius: 5px;
+  }
+
+  .main_nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s;
+  }
+
+  .main_nav.active {
+    max-height: 100vh;
+  }
+
+  .burger span {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .burger.active span {
+    opacity: 0;
+  }
+
+  .burger::before {
+    top: 0;
+  }
+
+  .burger::before,
+.burger::after {
+    content: "";
+    transition: all 0.5s;
+  }
+
+  .burger::after {
+    bottom: 0;
+  }
+
+  .burger.active::before {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .burger.active::after {
+    bottom: 50%;
+    transform: translate(-50%, 50%) rotate(-45deg);
+  }
+}
+#order-desk {
+  top: 12%;
+  position: fixed;
+  height: 88%;
+}
+
+#card-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: lightgrey;
+}
+
+#order-filters {
+  min-width: 216px;
+}
+
+#card-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+#img-hw {
+  position: sticky;
+  width: 90%;
+  left: 4.9%;
+}
+
+#order-link-back {
+  color: darkblue;
+}
+
+#order-if {
+  margin-top: 8%;
 }
 
 #sec4-text {
@@ -29,7 +187,8 @@
   margin-left: 10px;
 }
 
-#section2, #section3 {
+#section2,
+#section3 {
   background-color: white;
 }
 
@@ -50,7 +209,8 @@
   height: 100%;
 }
 
-#text-block, #devs-info {
+#text-block,
+#devs-info {
   border: solid lightgrey 1px;
   border-radius: 10px;
   margin: 5px;
@@ -105,7 +265,8 @@
   height: 40%;
 }
 
-#login-company-btn, #login-customer-btn {
+#login-company-btn,
+#login-customer-btn {
   width: 50%;
   height: 40px;
   display: flex;
@@ -133,7 +294,8 @@
   border-top-left-radius: 19px;
 }
 
-#company-pic, #customer-pic {
+#company-pic,
+#customer-pic {
   background-color: black;
   color: white;
   -webkit-transition: 1.5s ease;
@@ -164,7 +326,8 @@
   background-image: url("images/257.jpg");
 }
 
-#reg-cust-body, #reg-comp-body {
+#reg-cust-body,
+#reg-comp-body {
   background-image: url("images/462757.jpg");
 }
 
@@ -232,7 +395,8 @@
   height: 100%;
 }
 
-#reg-h1, #reg-h3 {
+#reg-h1,
+#reg-h3 {
   color: white;
 }
 
