@@ -1,55 +1,81 @@
-import React, {Component} from 'react';
-import {Link} from "react-router-dom";
-import './css-styles/styles.css'
-import './css-styles/individual-styles.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import {Link as LinkTo} from "react-scroll";
+import "./css-styles/styles.css";
+import "./css-styles/individual-styles.css";
+
 
 class Header extends Component {
-    constructor(props){
-        super(props);
-        this.state = {loggedIn: false};
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: false,
     };
+  }
 
-    render() {
-        let btns;
-        if(this.state.loggedIn)
-            btns = logged_in(this.props.username);
-        else
-            btns = sign_btns();
-
-        return (
-            <header className="d-flex-spacebtw">
-                <div className="col-3">
-                    <Link to="/"><img className="col-3 col-xl-3" src={require("./css-styles/images/logo_transparent.png")} id="logo"/></Link>
-                </div>
-                <nav className="menu flex-end-center col-9">
-                    <div className="flex-row-center" >
-                        <a href="#sec2" className="menu-link">INFO</a>
-                        <a href="#sec3" className="menu-link">WHY WE?</a>
-                        <a href="#sec4" className="menu-link">ABOUT US</a>
-                        <a href="#sec5" className="menu-link">CONTACTS</a>
-                        {btns}
-                    </div>
-                </nav>
-            </header>
-        );
+  createElemsWithHrefs = (className) => {
+    let elems = [];
+    for (let i = 0; i < this.props.elements_href.length; i++) {
+      elems.push(
+        <a
+          href={this.props.hrefs[this.props.elements_href[i]]}
+          className="menu-link"
+        >
+          {this.props.elements_href[i]}
+        </a>
+      );
     }
-}
+    return elems;
+  };
 
-function sign_btns() {
-    return(
-        <div className='flex-row-center'>
-            <Link to="/sign-in" className="menu-link sign-btn">|sign in|</Link>
-            <Link to="/sign-up" className="menu-link sign-btn">|sign up|</Link>
+  createElemsWithLinks = (className) => {
+    let elems = [];
+    for (let i = 0; i < this.props.elements_link.length; i++) {
+      elems.push(
+        <Link
+          to={this.props.links[this.props.elements_link[i]]}
+          className="menu-link"
+        >
+          {this.props.elements_link[i]}
+        </Link>
+      );
+    }
+    return elems;
+  };
+
+  render() {
+    let href_elems;
+    let link_elems;
+    if (this.props.hrefs && this.props.links) {
+      href_elems = this.createElemsWithHrefs();
+      link_elems = this.createElemsWithLinks();
+    } else if (this.props.hrefs) href_elems = this.createElemsWithHrefs();
+    else if (this.props.links) link_elems = this.createElemsWithLinks();
+
+    return (
+      <header className="d-flex-spacebtw">
+
+        <div className="col-3">
+          <Link to="/">
+            <img
+              className="col-3 col-xl-3"
+              src={require("./css-styles/images/logo_transparent.png")}
+              id="logo"
+            />
+          </Link>
         </div>
+        <nav
+          id="navigation"
+          className="menu flex-end-center col-9"
+        >
+          <div className="flex-row-center">
+            {href_elems}
+            {link_elems}
+          </div>
+        </nav>
+      </header>
     );
-}
-
-function logged_in(username) {
-    return(
-      <div>
-          <a className="menu-link" href='#'>{username}</a>
-      </div>
-    );
+  }
 }
 
 export default Header;

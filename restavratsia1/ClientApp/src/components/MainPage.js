@@ -10,11 +10,23 @@ import {
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "./footer";
+import Header from "./header";
 
 class MainPage extends Component {
   render() {
     return (
       <div>
+        <Header
+          elements_href={["INFO", "WHY WE?", "ABOUT US", "CONTACTS"]}
+          elements_link={["|sign in|", "|sign up|"]}
+          hrefs={{
+            INFO: "#sec2",
+            "WHY WE?": "#sec3",
+            "ABOUT US": "#sec4",
+            CONTACTS: "#sec5",
+          }}
+          links={{ "|sign in|": "/sign-in", "|sign up|": "/sign-up" }}
+        />
         <section id="block1-sec1" className="section background-responsive">
           <div className="container col-12 flex-row-center flex-lg-column">
             <div className="col-6 flex-center">
@@ -33,10 +45,7 @@ class MainPage extends Component {
             </div>
           </div>
         </section>
-        <section
-          id="sec2"
-          className="section sm-section-height-2x lg-section-height-2_5x"
-        >
+        <section id="sec2" className="section lg-section-height-2x">
           <div className="container col-10 flex-row-center flex-lg-column">
             <div className="flex-center col-5 col-lg-9 col-md-11 col-sm-11">
               <img
