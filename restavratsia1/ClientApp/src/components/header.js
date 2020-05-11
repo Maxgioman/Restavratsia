@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {Link as LinkTo} from "react-scroll";
 import "./css-styles/styles.css";
 import "./css-styles/individual-styles.css";
 

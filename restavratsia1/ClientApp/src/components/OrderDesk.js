@@ -1,4 +1,4 @@
-import React, { Component, Suspense, Fragment } from "react";
+import React, { Component } from "react";
 import OrderCard from "./OrderCard";
 import Header from "./header";
 import axios from "axios";
