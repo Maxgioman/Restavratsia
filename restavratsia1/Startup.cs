@@ -30,7 +30,8 @@ namespace restavratsia1
             services.AddDbContext<mydbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole>(options =>
+            services
+                .AddIdentity<User, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = false;
                 options.Password.RequireNonAlphanumeric = false;

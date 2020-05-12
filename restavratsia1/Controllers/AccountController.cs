@@ -10,6 +10,11 @@ using System.Web.Http.Results;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Collections;
+using Microsoft.AspNet.Identity;
+using System.Net.Mail;
+using restavratsia1;
+using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace restavratsia1.Controllers
 {
@@ -29,13 +34,15 @@ namespace restavratsia1.Controllers
     [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
+        private readonly Microsoft.AspNetCore.Identity.UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ILogger<AccountController> logger;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(Microsoft.AspNetCore.Identity.UserManager<User> userManager, SignInManager<User> signInManager, ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this.logger = logger;
         }
 
         //[Microsoft.AspNetCore.Mvc.HttpGet]
@@ -57,35 +64,31 @@ namespace restavratsia1.Controllers
                     Email = model.Email,
                     Login = model.Login,
                     Pass = model.Password,
-                    Name =  name,
+                    Name = name,
                     Phone = model.Phone,
                     IsCompany = model.IsCompany,
                     UserName = model.Login
                 };
                 try
                 {
-                    //string mySelectQuery = "SELECT UserName,login FROM user;";
-                    //MySqlConnection myConnection =
-                    //new MySqlConnection("Server=localhost; port = 3306 ;user=root;password=leomessi1021;database=mydb");
-                    //MySqlCommand myCommand = new MySqlCommand(mySelectQuery, myConnection);
-                    //myCommand.Connection.Open();
-                    //var ob = myCommand.ExecuteReader();
-                    //var arr = new List<string>();
-                    //while (ob.Read())
-                    //{
-                    //    arr.Add(ob[0].ToString() + "---" + ob[1].ToString());
-                    //}
                     var result = _userManager.CreateAsync(user, model.Password).Result; //);
                     if (result.Succeeded)
                     {
+                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                            new { userId = user.Id, token = token }, Request.Scheme);
+                        logger.Log(LogLevel.Warning, confirmationLink);
                         _signInManager.SignInAsync(user, false).Wait();
+                        /*ViewBag.ErrorTitle = "Confirm your email";
+                        ViewBag.ErrorBody = "Follow the link we have emailed you";
+                        return View("Error");*/
                         return Ok(user);
                     }
-                    //return new ExceptionResult(new Exception(result.Errors.ToString()), this);//
-                    return BadRequest(new AuthFailedRequestData
-                    {
-                        Errors = result.Errors
-                    });
+                    else
+                        return BadRequest(new AuthFailedRequestData
+                        {
+                            Errors = result.Errors
+                        });
                 }
                 catch (MySqlException ex)
                 {
@@ -112,19 +115,46 @@ namespace restavratsia1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Login,model.Password,model.RememberMe,false);
-                
-                if(result.Succeeded)
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var result = await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
+
+                if (result.Succeeded)
                 {
-                    return Ok();
+                    return Ok(Json(userId, model.Login));
                 }
                 return BadRequest(new AuthFailedResponse
                 {
                     Message = "Invalid Login Attempt.Configuration of login and password is not valid"
                 });
             }
-            return BadRequest(ModelState);
+            else
+                return BadRequest(ModelState);
         }
+
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [Microsoft.AspNetCore.Mvc.Route("delete/{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                Microsoft.AspNetCore.Identity.IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                    return RedirectToAction("login");
+                else
+                   return BadRequest(ModelState);
+            }
+            else
+                return BadRequest(ModelState);
+        }
+
     }
     
 
