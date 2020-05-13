@@ -1,22 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import axios from "axios";
-import {Redirect} from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 import * as Yup from "yup";
-import {Dialog, DialogActions, DialogContent, DialogContentText, Button} from "@material-ui/core";
-import {faCheckCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from "@material-ui/core";
+import {
+  faCheckCircle,
+  faTimesCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import request from "../Utils/RequestWrapper";
+import addPassConfirmMethod from "../Utils/GlobalMethods";
 
-Yup.addMethod(Yup.mixed, "sameAs", function (ref, message) {
-  return this.test("sameAs", message, function (value) {
-    const other = this.resolve(ref);
-    console.log("other : ", other);
-    console.log("value : ", value);
-    return !other || !value || value === other;
-  });
-});
+addPassConfirmMethod();
 
 export default function Signup(props) {
   let isCompany;
@@ -40,7 +41,7 @@ export default function Signup(props) {
         .max(16, "too long")
         .matches(
           "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$",
-          "password must contain only [A-Z|a-z|0-9] characters and it length should be 8-16 characters"
+          "password must contain at least 1 [A-Z], 1 [a-z] and 1 [0-9] characters and it length should be 8-16 characters"
         )
         .required("this field is required"),
       passwordConfirmation: Yup.string()
@@ -102,7 +103,7 @@ export default function Signup(props) {
         .max(16, "too long")
         .matches(
           "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$",
-          "password must contain only [A-Z|a-z|0-9] characters and it length should be 8-16 characters"
+          "password must contain at least 1 [A-Z], 1 [a-z] and 1 [0-9] characters and it length should be 8-16 characters"
         )
         .required("this field is required"),
       passwordConfirmation: Yup.string()
@@ -129,7 +130,7 @@ export default function Signup(props) {
 
   const [open, setOpen] = React.useState(props.open);
   let icon;
-  props.type === "error"? icon = faTimesCircle : icon = faCheckCircle;
+  props.type === "error" ? (icon = faTimesCircle) : (icon = faCheckCircle);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -139,8 +140,8 @@ export default function Signup(props) {
     setOpen(false);
   };
 
-  const handleRedirect = () =>{
-    return <Redirect to={'/sign-in'}/>;
+  const handleRedirect = () => {
+    return <Redirect to={"/sign-in"} />;
   };
 
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
@@ -171,14 +172,16 @@ export default function Signup(props) {
       else newUser.Name = values.companyName;
 
       request({
-        method: 'post',
-        url: 'account/register/',
+        method: "post",
+        url: "account/register/",
         data: newUser,
-      }).then((resp) => {
-        console.log(resp);
-      }).catch(err=>{
-        console.log(err);
       })
+        .then((resp) => {
+          console.log(resp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       /*axios
         .post(
           "https://localhost:44348/api/account/register/",
@@ -232,142 +235,134 @@ export default function Signup(props) {
     "Odesa region",
   ];
 */
-    if (props.usertype === "customer") form = customer();
+  if (props.usertype === "customer") form = customer();
   else form = company();
   return (
-      <form
-        id="reg-form"
-        className="col-12 form-sign-up form"
-        onSubmit={handleSubmit}
-      >
-        <div id="div-form-reg" className="flex-center col-12">
-          <div id="div-from-reg-inner" className="flex-column-center col-12">
-            <h1
-              id="reg-h1"
-              className="text text-title text-align-center text-indent-0 mb-1"
-            >
-              <hr />
-              --- New User Creation ---
-              <hr />
-            </h1>
-            <h3
-              id="reg-h3"
-              className="text text-align-center text-indent-0 mb-4"
-            >
-              fields with * are required
-            </h3>
-            <div id="reg-div-3-top" className="col-10 col-xxs-12 flex-center">
-              <div className="input-text col-11 flex-column-center">
-                <p className="text-form text col-12 mb-1 mt-1">Login*</p>
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  placeholder="Enter your login"
-                  className="input-field col-12 mb-2 mt-1"
-                  onChange={handleChange}
-                  value={values.username}
-                />
-                {errors.username && touched.username ? (
-                  <p className="errorValidationText">{errors.username}</p>
-                ) : null}
-                <p className="text-form text col-12 mb-1 mt-1">Password*</p>
-                <input
-                  id="password"
-                  name={"password"}
-                  type="password"
-                  placeholder={"Enter your password"}
-                  className={"input-field col-12 mb-2 mt-1"}
-                  onChange={handleChange}
-                  value={values.password}
-                />
-                {errors.password && touched.password ? (
-                  <p className="errorValidationText">{errors.password}</p>
-                ) : null}
-                <p className="text-form text col-12 mb-1 mt-1">
-                  Confirm password*
+    <form
+      id="reg-form"
+      className="col-12 form-sign-up form"
+      onSubmit={handleSubmit}
+    >
+      <div id="div-form-reg" className="flex-center col-12">
+        <div id="div-from-reg-inner" className="flex-column-center col-12">
+          <h1
+            id="reg-h1"
+            className="text text-title text-align-center text-indent-0 mb-1"
+          >
+            <hr />
+            --- New User Creation ---
+            <hr />
+          </h1>
+          <h3 id="reg-h3" className="text text-align-center text-indent-0 mb-4">
+            fields with * are required
+          </h3>
+          <div id="reg-div-3-top" className="col-10 col-xxs-12 flex-center">
+            <div className="input-text col-11 flex-column-center">
+              <p className="text-form text col-12 mb-1 mt-1">Login*</p>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                placeholder="Enter your login"
+                className="input-field col-12 mb-2 mt-1"
+                onChange={handleChange}
+                value={values.username}
+              />
+              {errors.username && touched.username ? (
+                <p className="errorValidationText">{errors.username}</p>
+              ) : null}
+              <p className="text-form text col-12 mb-1 mt-1">Password*</p>
+              <input
+                id="password"
+                name={"password"}
+                type="password"
+                placeholder={"Enter your password"}
+                className={"input-field col-12 mb-2 mt-1"}
+                onChange={handleChange}
+                value={values.password}
+              />
+              {errors.password && touched.password ? (
+                <p className="errorValidationText">{errors.password}</p>
+              ) : null}
+              <p className="text-form text col-12 mb-1 mt-1">
+                Confirm password*
+              </p>
+              <input
+                id="passwordConfirmation"
+                name="passwordConfirmation"
+                type="password"
+                placeholder={"Confirm your password"}
+                className={"input-field col-12 mb-2 mt-1"}
+                onChange={handleChange}
+                value={values.passwordConfirmation}
+              />
+              {errors.passwordConfirmation && touched.passwordConfirmation ? (
+                <p className="errorValidationText">
+                  {errors.passwordConfirmation}
                 </p>
-                <input
-                  id="passwordConfirmation"
-                  name="passwordConfirmation"
-                  type="password"
-                  placeholder={"Confirm your password"}
-                  className={"input-field col-12 mb-2 mt-1"}
-                  onChange={handleChange}
-                  value={values.passwordConfirmation}
-                />
-                {errors.passwordConfirmation && touched.passwordConfirmation ? (
-                  <p className="errorValidationText">
-                    {errors.passwordConfirmation}
-                  </p>
-                ) : null}
-              </div>
+              ) : null}
             </div>
-            {form}
-            <div
-              id="reg-div-3-bottom"
-              className="col-10 flex-center col-xxs-12"
-            >
-              <div className="input-text col-11 flex-column-center">
-                <p className="text-form text col-12 mb-1 mt-1">Email*</p>
-                <input
-                  id="email"
-                  name={"email"}
-                  type="email"
-                  placeholder={"Enter company email"}
-                  className={"input-field col-12 mb-2 mt-1"}
-                  onChange={handleChange}
-                  value={values.email}
-                />
-                {errors.email && touched.email ? (
-                  <p className="errorValidationText">{errors.email}</p>
-                ) : null}
-                <p className="text-form text col-12 mb-1 mt-1">Phone number</p>
-                <input
-                  id="phone"
-                  name={"phone"}
-                  type="tel"
-                  placeholder={"format: +381234567890"}
-                  className={"input-field col-12 mb-2 mt-1"}
-                  onChange={handleChange}
-                  value={values.phone}
-                />
-                {errors.phone && touched.phone ? (
-                  <p className="errorValidationText">{errors.phone}</p>
-                ) : null}
-              </div>
+          </div>
+          {form}
+          <div id="reg-div-3-bottom" className="col-10 flex-center col-xxs-12">
+            <div className="input-text col-11 flex-column-center">
+              <p className="text-form text col-12 mb-1 mt-1">Email*</p>
+              <input
+                id="email"
+                name={"email"}
+                type="email"
+                placeholder={"Enter company email"}
+                className={"input-field col-12 mb-2 mt-1"}
+                onChange={handleChange}
+                value={values.email}
+              />
+              {errors.email && touched.email ? (
+                <p className="errorValidationText">{errors.email}</p>
+              ) : null}
+              <p className="text-form text col-12 mb-1 mt-1">Phone number</p>
+              <input
+                id="phone"
+                name={"phone"}
+                type="tel"
+                placeholder={"format: +381234567890"}
+                className={"input-field col-12 mb-2 mt-1"}
+                onChange={handleChange}
+                value={values.phone}
+              />
+              {errors.phone && touched.phone ? (
+                <p className="errorValidationText">{errors.phone}</p>
+              ) : null}
             </div>
           </div>
         </div>
-        <div id="div-btn-reg" className="flex-row-center col-12">
-          <Link to={"/sign-up"} className="button-class login-form-btn p-2">
-            back
-          </Link>
-          <button
-            id={"sign-up-btn"}
-            name={"sign-up-btn"}
-            type={"submit"}
-            className={"button-class login-form-btn p-2 btn"}
-          >
-            sign up
-          </button>
-        </div>
-        <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
+      </div>
+      <div id="div-btn-reg" className="flex-row-center col-12">
+        <Link to={"/sign-up"} className="button-class login-form-btn p-2">
+          back
+        </Link>
+        <button
+          id={"sign-up-btn"}
+          name={"sign-up-btn"}
+          type={"submit"}
+          className={"button-class login-form-btn p-2 btn"}
         >
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              <FontAwesomeIcon className='mr-1' icon={icon}/> {msg}
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            {btn}
-          </DialogActions>
-        </Dialog>
-      </form>
+          sign up
+        </button>
+      </div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            <FontAwesomeIcon className="mr-1" icon={icon} /> {msg}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>{btn}</DialogActions>
+      </Dialog>
+    </form>
   );
 
   function customer() {
