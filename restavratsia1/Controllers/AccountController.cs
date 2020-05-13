@@ -71,13 +71,13 @@ namespace restavratsia1.Controllers
                 };
                 try
                 {
-                    var result = _userManager.CreateAsync(user, model.Password).Result; //);
+                    var result = _userManager.CreateAsync(user, model.Password).Result;
                     if (result.Succeeded)
                     {
-                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var confirmationLink = Url.Action("ConfirmEmail", "Account",
-                            new { userId = user.Id, token = token }, Request.Scheme);
-                        logger.Log(LogLevel.Warning, confirmationLink);
+                        //var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        //var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                        //    new { userId = user.Id, token = token }, Request.Scheme);
+                        //logger.Log(LogLevel.Warning, confirmationLink);
                         _signInManager.SignInAsync(user, false).Wait();
                         /*ViewBag.ErrorTitle = "Confirm your email";
                         ViewBag.ErrorBody = "Follow the link we have emailed you";
@@ -116,12 +116,21 @@ namespace restavratsia1.Controllers
             if (ModelState.IsValid)
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
+                string mySelectQuery = "SELECT id, login, isCompany FROM user where id = '" + userId + "';";
+                MySqlConnection myConnection = new MySqlConnection("Server=localhost; port=3306;user=root;password=root;database=mydb");
+                MySqlCommand myCommand = new MySqlCommand(mySelectQuery, myConnection);
+                myCommand.Connection.Open();
+                var ob = myCommand.ExecuteReader();
+                var arr = new List<string>();
+                while (ob.Read())
+                {
+                    arr.Add(ob[0].ToString() + " " + ob[1].ToString() + " " + ob[2].ToString());
+                }
                 var result = await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
-                    return Ok(Json(userId, model.Login));
+                    return Ok(Json(arr));
                 }
                 return BadRequest(new AuthFailedResponse
                 {
@@ -147,14 +156,38 @@ namespace restavratsia1.Controllers
             {
                 Microsoft.AspNetCore.Identity.IdentityResult result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
-                    return RedirectToAction("login");
+                    return RedirectToAction("register");
                 else
-                   return BadRequest(ModelState);
+                    return BadRequest(ModelState);
             }
             else
                 return BadRequest(ModelState);
         }
 
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [Microsoft.AspNetCore.Mvc.Route("edit/{id}")]
+        public async Task<ActionResult> Edit([Microsoft.AspNetCore.Mvc.FromBody] EditUserViewModel model)
+        {
+            User user = await _userManager.FindByIdAsync(model.Id);
+            if (user != null)
+            {
+                user.Email = model.Email;
+                user.Login = model.Login;
+                user.Pass = model.Password;
+                user.Name = model.Name;
+                user.Phone = model.Phone;
+                user.IsCompany = model.IsCompany;
+                user.UserName = model.Login;
+                Microsoft.AspNetCore.Identity.IdentityResult result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                    return Ok();
+                else
+                    return BadRequest(ModelState);
+            }
+            else
+                return BadRequest(ModelState);
+
+        }
     }
     
 
