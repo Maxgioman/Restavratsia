@@ -314,39 +314,3 @@ export default function ProfilePage(props) {
     </div>
   );
 }
-
-//unused code
-{
-  /*
-const handleConfirmPassword = () => {
-    setFieldValue("passwordConfirmField", "");
-  };
-
-<TextField
-            id="password"
-            label="Password"
-            type="password"
-            disabled={values.disableControl}
-            onChange={(event) => {
-              handleChanges(event);
-              handleConfirmPassword();
-            }}
-            value={values.password}
-            className="col-12"
-          />
-          {errors.password && touched.password ? (
-            <p className="errorValidationText">{errors.password}</p>
-          ) : null}
-          <div className={values.passwordConfirmField}>
-            <TextField
-              id="passwordConfirm"
-              label="Confirm Password"
-              type="password"
-              onChange={handleChanges}
-            />
-            {errors.passwordConfirm && touched.passwordConfirm ? (
-              <p className="errorValidationText">{errors.passwordConfirm}</p>
-            ) : null}
-          </div>
-*/
-}

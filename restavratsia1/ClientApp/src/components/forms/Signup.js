@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import { Redirect } from "react-router-dom";
 import * as Yup from "yup";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
+  Button,
 } from "@material-ui/core";
 import {
   faCheckCircle,
@@ -21,8 +21,6 @@ addPassConfirmMethod();
 
 export default function Signup(props) {
   let isCompany;
-  let msg;
-  let btn;
   let validationSchema;
   let form;
   if (props.usertype === "customer") {
@@ -128,23 +126,17 @@ export default function Signup(props) {
     });
   }
 
-  const [open, setOpen] = React.useState(props.open);
   let icon;
   props.type === "error" ? (icon = faTimesCircle) : (icon = faCheckCircle);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleRedirect = () => {
-    return <Redirect to={"/sign-in"} />;
-  };
-
-  const { handleSubmit, handleChange, values, errors, touched } = useFormik({
+  const {
+    handleSubmit,
+    setFieldValue,
+    handleChange,
+    values,
+    errors,
+    touched,
+  } = useFormik({
     initialValues: {
       username: "",
       companyName: "",
@@ -155,6 +147,9 @@ export default function Signup(props) {
       email: "",
       phone: "",
       isCompany: isCompany,
+      dialog: false,
+      btn: null,
+      msg: null,
     },
     validationSchema,
     onSubmit: (values) => {
@@ -177,64 +172,43 @@ export default function Signup(props) {
         data: newUser,
       })
         .then((resp) => {
-          console.log(resp);
+          if (resp.status === 200) {
+            setFieldValue("msg", "Account successfully created!");
+            setFieldValue(
+              "btn",
+              <Link id="sign-up-redirect-btn" to={"/sign-in"} className="link">
+                <Button variant="contained" color="primary">
+                  ok
+                </Button>
+              </Link>
+            );
+            handleDialogOpen();
+          }
         })
         .catch((err) => {
-          console.log(err);
+          setFieldValue("msg", err.data.errors[0].description);
+          setFieldValue(
+            "btn",
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleDialogClose}
+            >
+              ok
+            </Button>
+          );
+          handleDialogOpen();
         });
-      /*axios
-        .post(
-          "https://localhost:44348/api/account/register/",
-          JSON.stringify(newUser),
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        )
-        .then((response) => {
-          if (response.status === 200) {
-            msg = "Registration successful!";
-            btn = <Button onClick={handleRedirect} color="primary" autoFocus>
-              Accept
-            </Button>;
-            handleClickOpen();
-          }
-        })
-        .catch((error) => {
-          btn = <Button onClick={handleClose} color="primary" autoFocus>
-            Accept
-          </Button>;
-          msg = JSON.stringify(error.source);
-          handleClickOpen();
-        });*/
     },
   });
-  /*
-  const cityOptions = [
-    "Lviv region",
-    "Kyiv region",
-    "Chernivci region",
-    "Ternopil region",
-    "Uzhgorod region",
-    "Vinnycia region",
-    "Khmelnyckyi region",
-    "Dnipro region",
-    "Kharkiv region",
-    "Cherkasy region",
-    "Chernigiv region",
-    "Sumy region",
-    "Kherson region",
-    "Krym region",
-    "Zhytomyr region",
-    "Lutsk region",
-    "Poltava region",
-    "Kirovograd region",
-    "Mykolaiv region",
-    "Zaporizhzhia region",
-    "Ivano-Frankivsk region",
-    "Rivne region",
-    "Odesa region",
-  ];
-*/
+
+  const handleDialogOpen = () => {
+    setFieldValue("dialog", true);
+  };
+  const handleDialogClose = () => {
+    setFieldValue("dialog", false);
+  };
+
   if (props.usertype === "customer") form = customer();
   else form = company();
   return (
@@ -350,17 +324,16 @@ export default function Signup(props) {
         </button>
       </div>
       <Dialog
-        open={open}
-        onClose={handleClose}
+        open={values.dialog}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <FontAwesomeIcon className="mr-1" icon={icon} /> {msg}
+            <FontAwesomeIcon className="mr-1" icon={icon} /> {values.msg}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>{btn}</DialogActions>
+        <DialogActions>{values.btn}</DialogActions>
       </Dialog>
     </form>
   );

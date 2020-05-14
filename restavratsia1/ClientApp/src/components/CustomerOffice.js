@@ -3,10 +3,18 @@ import Header from "./header";
 import CustomerOfficeMenu from "./CustomerOfficeMenu";
 
 class CustomerOffice extends Component {
+  log_out = () => {
+    window.localStorage.removeItem("authorized");
+  };
+
   render() {
     return (
       <div>
-        <Header elements_link={["log out"]} links={{ "log out": "/" }} />
+        <Header
+          elements_link={["log out"]}
+          links={{ "log out": "/" }}
+          func_for_link={{ "log out": this.log_out }}
+        />
         <div id="cust-office" className="position-fixed-with-header col-12">
           <CustomerOfficeMenu />
         </div>

@@ -7,8 +7,15 @@ import SignUpForm from "./SignUpForm";
 import OrderDesk from "./OrderDesk";
 import OrderInterface from "./OrderInterface";
 import CustomerOffice from "./CustomerOffice";
+import RoutesAuthorized from "./RoutesAuthorized";
 
-class StartApp extends Component {
+class Routes extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      authorized: window.localStorage.getItem("authorized"),
+    };
+  }
   render() {
     return (
       <Switch>
@@ -20,19 +27,11 @@ class StartApp extends Component {
         </Route>
         <Route path={"/sign-in"} component={SignIn} />
         <Route path={"/sign-up"} component={SignUp} />
-        <Route path={"/order-desk/order/:id"}>
-          <OrderInterface usertype="company" />
-        </Route>
-        <Route path={"/order_id/:id"}>
-          <OrderInterface usertype="customer" />
-        </Route>
-        <Route path={"/customer-office"} component={CustomerOffice} />
-        <Route path={"/company-office"} component={CustomerOffice} />
-        <Route path={"/order-desk"} component={OrderDesk} />
         <Route exact path={"/"} component={MainPage} />
+        <RoutesAuthorized authorized={this.state.authorized} />
       </Switch>
     );
   }
 }
 
-export default StartApp;
+export default Routes;
