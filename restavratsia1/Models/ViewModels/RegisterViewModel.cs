@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using restavratsia1.Models.ValidationAttributes;
 
 namespace restavratsia1.Models.ViewModels
 {
@@ -31,6 +32,7 @@ namespace restavratsia1.Models.ViewModels
         //        [Display(Name = "Поштова скринька")]
         [Required(ErrorMessage = "Не вказано поштової скриньки користувача")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [EmailUserUnique]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не вказано Ваше ім'я")]
@@ -45,7 +47,7 @@ namespace restavratsia1.Models.ViewModels
         public sbyte IsCompany { get; set; }
 
         //        [Display(Name = "Номер телефону")]
-        [StringLength(13,MinimumLength = 13,ErrorMessage = "Телефон повинен становити 13 символів")]
+        [StringLength(13,ErrorMessage = "Телефон повинен становити 13 символів")]
 //        [RegularExpression(@"/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/",ErrorMessage ="Телефон введено невірно")]
         public string Phone { get; set; }
     }
