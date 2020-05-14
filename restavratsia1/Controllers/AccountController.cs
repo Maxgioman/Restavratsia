@@ -15,6 +15,7 @@ using System.Net.Mail;
 using restavratsia1;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
+using System.Web.Http.Validation;
 
 namespace restavratsia1.Controllers
 {
@@ -117,7 +118,7 @@ namespace restavratsia1.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 string mySelectQuery = "SELECT id, login, isCompany FROM user where id = '" + userId + "';";
-                MySqlConnection myConnection = new MySqlConnection("Server=localhost; port=3306;user=root;password=root;database=mydb");
+                MySqlConnection myConnection = new MySqlConnection("Server=localhost;port=3306;user=root;password=root;database=mydb");
                 MySqlCommand myCommand = new MySqlCommand(mySelectQuery, myConnection);
                 myCommand.Connection.Open();
                 var ob = myCommand.ExecuteReader();
@@ -151,45 +152,82 @@ namespace restavratsia1.Controllers
         [Microsoft.AspNetCore.Mvc.Route("delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             User user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
                 Microsoft.AspNetCore.Identity.IdentityResult result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
-                    return RedirectToAction("register");
+                    return Ok();
                 else
-                    return BadRequest(ModelState);
+                    return BadRequest(result.Errors);
             }
             else
                 return BadRequest(ModelState);
+        }
+
+        public async Task<IActionResult> Update(string id)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+                return View(user);
+            else
+                return RedirectToAction("Index");
         }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("edit/{id}")]
-        public async Task<ActionResult> Edit([Microsoft.AspNetCore.Mvc.FromBody] EditUserViewModel model)
+        public async Task<ActionResult> Update([Microsoft.AspNetCore.Mvc.FromBody] EditUserViewModel model, string id)
         {
-            User user = await _userManager.FindByIdAsync(model.Id);
-            if (user != null)
+            if (ModelState.IsValid)
             {
-                user.Email = model.Email;
-                user.Login = model.Login;
-                user.Pass = model.Password;
-                user.Name = model.Name;
-                user.Phone = model.Phone;
-                user.IsCompany = model.IsCompany;
-                user.UserName = model.Login;
-                Microsoft.AspNetCore.Identity.IdentityResult result = await _userManager.UpdateAsync(user);
-                if (result.Succeeded)
-                    return Ok();
+                //ClaimsPrincipal currentUser = this.User;
+                //var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+                User user = await _userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    user.Email = model.Email;
+                    user.Login = model.Login;
+                    /*user.Pass = model.Password;*/
+                    user.Name = model.Name;
+                    user.Phone = model.Phone;
+                    user.UserName = model.Login;
+                    Microsoft.AspNetCore.Identity.IdentityResult result = await _userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                        return Ok();
+                    else
+                        return BadRequest(result.Errors);
+                }
                 else
-                    return BadRequest(ModelState);
+                    return BadRequest(Json(id));
             }
-            else
-                return BadRequest(ModelState);
+            return BadRequest("model isn't valid");
+        }
 
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [Microsoft.AspNetCore.Mvc.Route("edit/password/{id}")]
+        public async Task<ActionResult> Update([Microsoft.AspNetCore.Mvc.FromBody] EditPassViewModel model, string id)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    user.Pass = model.NewPassword;
+                    var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        return Ok();
+                    }
+                        return BadRequest(result.Errors);
+                }
+                else
+                    return BadRequest(Json(id));
+            }
+            return BadRequest("model isn't valid");
         }
     }
-    
+}
 
     //class Wrapper : ApiController
     //{
@@ -206,7 +244,7 @@ namespace restavratsia1.Controllers
     //        return BadRequest(ModelState);
     //    }
     //}
-}
+
 
 //{
 

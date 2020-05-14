@@ -27,7 +27,7 @@ namespace restavratsia1.Models.ViewModels
 
         [Required(ErrorMessage = "Не вказано поштової скриньки користувача")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [EmailUserUnique]
+        //[EmailUserUnique]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не вказано Ваше ім'я")]

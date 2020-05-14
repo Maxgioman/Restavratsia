@@ -10,22 +10,18 @@ namespace restavratsia1.Models.ViewModels
 {
     public class EditUserViewModel
     {
-        [Required(ErrorMessage = "Не вказано id")]
-        public string Id { get; set; }
-
         [Required(ErrorMessage = "Не вказано імені користувача")]
         [StringLength(25, MinimumLength = 8, ErrorMessage = "Довжина логіну повинна бути від 8 до 25 символів")]
         public string Login { get; set; }
 
-        [Required(ErrorMessage = "Вкажіть пароль")]
+        /*[Required]
         [DataType(DataType.Password)]
-        [StringLength(16, MinimumLength = 8, ErrorMessage = "Довжина паролю повинна бути від 8 до 16 символів")]
-        public string Password { get; set; }
-
+        [Microsoft.AspNetCore.Mvc.Remote(action: "CheckPass", controller: "Account", ErrorMessage = "Невірно введений пароль")]
+        public string Password { get; set; }*/
 
         [Required(ErrorMessage = "Не вказано поштової скриньки користувача")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [EmailUserUnique]
+        //[EmailUserUnique]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не вказано Ваше ім'я")]
@@ -33,9 +29,6 @@ namespace restavratsia1.Models.ViewModels
         public string Name { get; set; }
 
         public string Surname { get; set; }
-
-        [Required(ErrorMessage = "Вас не ідентифіковано")]
-        public sbyte IsCompany { get; set; }
 
         [StringLength(13, ErrorMessage = "Телефон повинен становити 13 символів")]
         public string Phone { get; set; }
