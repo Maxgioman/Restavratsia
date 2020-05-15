@@ -41,5 +41,7 @@ namespace restavratsia1.Models.ViewModels
 
         [StringLength(13,ErrorMessage = "Телефон повинен становити 13 символів")]
         public string Phone { get; set; }
+
+        public string Image { get; set; }
     }
 }

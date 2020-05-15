@@ -16,6 +16,7 @@ using restavratsia1;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.Web.Http.Validation;
+using System.Web.Helpers;
 
 namespace restavratsia1.Controllers
 {
@@ -60,6 +61,20 @@ namespace restavratsia1.Controllers
             if (ModelState.IsValid)
             {
                 string name = (model.IsCompany == 0) ? model.Name + " " + model.Surname : model.Name;
+                WebImage photo = WebImage.GetImageFromRequest();
+                var newFileName = "";
+                var imagePath = "";
+                var imageThumbPath = "";
+                if (photo != null)
+                {
+                    newFileName = Guid.NewGuid().ToString() + "_" + System.IO.Path.GetFileName(photo.FileName);
+                    imagePath = @"UploadImages\Users\" + newFileName;
+                    photo.Save(@"~\" + imagePath);
+                    imageThumbPath = @"images\thumbs\" + newFileName;
+                    photo.Resize(width: 60, height: 60, preserveAspectRatio: true,
+                       preventEnlarge: true);
+                    photo.Save(@"~\" + imageThumbPath);
+                }
                 var user = new User()
                 {
                     Email = model.Email,
@@ -68,7 +83,8 @@ namespace restavratsia1.Controllers
                     Name = name,
                     Phone = model.Phone,
                     IsCompany = model.IsCompany,
-                    UserName = model.Login
+                    UserName = model.Login,
+                    Image = imageThumbPath
                 };
                 try
                 {
