@@ -1,27 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import axios from "axios";
+import request from "../Utils/RequestWrapper";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from "@material-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function Signin(props) {
-  const { handleSubmit, handleChange, values } = useFormik({
+  const { handleSubmit, setFieldValue, handleChange, values } = useFormik({
     initialValues: {
       Login: "",
       Password: "",
+      dialog: false,
+      msg: "",
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values));
-      axios
-          .post("https://localhost:44348/api/account/login/", JSON.stringify(values), {
-              headers: { "Content-Type": "application/json" },
-          })        .then((response) => {
-          console.log(response);
+    onSubmit: () => {
+      request({
+        method: "post",
+        url: "account/login/",
+        data: { Login: values.Login, Password: values.Password },
+      })
+        .then((resp) => {
+          if (resp.status === 200) {
+            window.localStorage.setItem("authorized", "1");
+          }
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
+          setFieldValue("msg", err.data.message);
+          handleDialogOpen();
         });
     },
   });
+
+  const handleDialogOpen = () => {
+    setFieldValue("dialog", true);
+  };
+  const handleDialogClose = () => {
+    setFieldValue("dialog", false);
+  };
 
   return (
     <form
@@ -72,6 +94,28 @@ export default function Signin(props) {
           sign in
         </button>
       </div>
+      <Dialog
+        open={values.dialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        onClose={handleDialogClose}
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            <FontAwesomeIcon className="mr-1" icon={faTimesCircle} />{" "}
+            {values.msg}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleDialogClose}
+          >
+            ok
+          </Button>
+        </DialogActions>
+      </Dialog>
     </form>
   );
 }

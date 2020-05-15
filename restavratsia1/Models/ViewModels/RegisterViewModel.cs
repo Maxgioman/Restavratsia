@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using restavratsia1.Models.ValidationAttributes;
 
 namespace restavratsia1.Models.ViewModels
 {
@@ -32,7 +31,6 @@ namespace restavratsia1.Models.ViewModels
         //        [Display(Name = "Поштова скринька")]
         [Required(ErrorMessage = "Не вказано поштової скриньки користувача")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [EmailUserUnique]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не вказано Ваше ім'я")]

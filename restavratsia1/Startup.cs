@@ -32,7 +32,7 @@ namespace restavratsia1
 
             services.AddIdentity<User, IdentityRole>(options =>
             {
-                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = true;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 8;
