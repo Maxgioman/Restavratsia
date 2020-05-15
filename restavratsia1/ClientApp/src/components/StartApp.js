@@ -6,6 +6,7 @@ import SignUp from "./SignUp";
 import SignUpForm from "./SignUpForm";
 import OrderDesk from "./OrderDesk";
 import OrderInterface from "./OrderInterface";
+import CustomerOffice from "./CustomerOffice";
 
 class StartApp extends Component {
   render() {
@@ -19,12 +20,14 @@ class StartApp extends Component {
         </Route>
         <Route path={"/sign-in"} component={SignIn} />
         <Route path={"/sign-up"} component={SignUp} />
-        <Route path={"/order-desk/cu-order_id/:id"}>
-          <OrderInterface usertype="customer" />
-        </Route>
-        <Route path={"/order-desk/co-order_id/:id"}>
+        <Route path={"/order-desk/order/:id"}>
           <OrderInterface usertype="company" />
         </Route>
+        <Route path={"/order_id/:id"}>
+          <OrderInterface usertype="customer" />
+        </Route>
+        <Route path={"/customer-office"} component={CustomerOffice} />
+        <Route path={"/company-office"} component={CustomerOffice} />
         <Route path={"/order-desk"} component={OrderDesk} />
         <Route exact path={"/"} component={MainPage} />
       </Switch>

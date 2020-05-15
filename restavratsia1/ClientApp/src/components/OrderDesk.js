@@ -13,21 +13,22 @@ class OrderDesk extends Component {
   }
 
   componentDidMount = async () => {
-    {let cards = [];
-    let response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    if (response.status === 200) {
-      response.data.map((elem) => {
-        cards.push(
-          <OrderCard id={elem.id} title={elem.title} body={elem.body} />
-        );
-      });
-    } else {
-      return "error occured";
+    {
+      let cards = [];
+      let response = await axios.get(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      if (response.status === 200) {
+        response.data.map((elem) => {
+          cards.push(
+            <OrderCard id={elem.id} title={elem.title} body={elem.body} />
+          );
+        });
+      } else {
+        return "error occured";
+      }
+      this.setState({ cards: cards });
     }
-    this.setState({ cards: cards });}
-
   };
 
   render() {
@@ -38,8 +39,11 @@ class OrderDesk extends Component {
           <div id="order-filters" className="col-3 pt-2 pr-2 pl-4">
             <OrderDeskFilters />
           </div>
-          <div id="card-container" className="col-9 pt-2 pr-2 pl-2 height-100">
-            <div id="card-box" className="col-12 height-100">
+          <div
+            id="orders-container"
+            className="col-9 pt-2 pr-2 pl-2 height-100"
+          >
+            <div id="card-box" className="col-12 height-100 scroll-y-only">
               {this.state.cards}
             </div>
           </div>

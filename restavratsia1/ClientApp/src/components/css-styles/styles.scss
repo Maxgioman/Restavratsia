@@ -138,6 +138,9 @@ footer {
 .width-inherit {
   width: inherit;
 }
+.maxwidth-inherit{
+  max-width: inherit;
+}
 
 .elem-fit {
   height: 100%;
@@ -261,6 +264,10 @@ footer {
   display: flex;
 }
 
+.d-none{
+  display:none;
+}
+
 .flex-end-center{
   display: flex;
   align-content: center;
@@ -324,6 +331,11 @@ footer {
   text-indent: 20px;
   font-family: Monospace;
   font-size: 20px;
+}
+
+.text-default{
+  text-align: justify;
+  font-family: Monospace;
 }
 
 .text-align-center {
@@ -419,6 +431,10 @@ footer {
   width: 50%;
   text-indent: 0;
   margin-bottom: 5px;
+}
+
+.text-area{
+  font-size: 18px;
 }
 
 .input-text {

@@ -3,7 +3,6 @@ import "./css-styles/styles.css";
 import "./css-styles/individual-styles.css";
 import Signup from "./forms/Signup";
 
-
 class SignUpForm extends Component {
   render() {
     return (
