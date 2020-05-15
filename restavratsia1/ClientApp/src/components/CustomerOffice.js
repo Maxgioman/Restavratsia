@@ -4,7 +4,9 @@ import CustomerOfficeMenu from "./CustomerOfficeMenu";
 
 class CustomerOffice extends Component {
   log_out = () => {
-    window.localStorage.removeItem("authorized");
+    window.localStorage.removeItem("userId");
+    window.localStorage.removeItem("username");
+    window.localStorage.removeItem("isCompany");
   };
 
   render() {

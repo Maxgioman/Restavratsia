@@ -14,18 +14,35 @@ import Header from "./header";
 
 class MainPage extends Component {
   render() {
+    let elem;
+    let link;
+    if (window.localStorage.getItem("username")) {
+      elem = [window.localStorage.getItem("username")];
+      if (window.localStorage.getItem("isCompany") === "1")
+        link = {
+          [elem[0]]: "/company-office/" + window.localStorage.getItem("userId"),
+        };
+      else
+        link = {
+          [elem[0]]:
+            "/customer-office/" + window.localStorage.getItem("userId"),
+        };
+    } else {
+      elem = ["|sign in|", "|sign up|"];
+      link = { "|sign in|": "/sign-in", "|sign up|": "/sign-up" };
+    }
     return (
       <div>
         <Header
           elements_href={["INFO", "WHY WE?", "ABOUT US", "CONTACTS"]}
-          elements_link={["|sign in|", "|sign up|"]}
+          elements_link={elem}
           hrefs={{
             INFO: "#sec2",
             "WHY WE?": "#sec3",
             "ABOUT US": "#sec4",
             CONTACTS: "#sec5",
           }}
-          links={{ "|sign in|": "/sign-in", "|sign up|": "/sign-up" }}
+          links={link}
         />
         <section id="block1-sec1" className="section background-responsive">
           <div className="container col-12 flex-row-center flex-lg-column">

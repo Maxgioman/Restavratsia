@@ -7,22 +7,16 @@ using System.Threading.Tasks;
 
 namespace restavratsia1.Models.ViewModels
 {
-    [NamePasswordEqual]
-    public class RegisterViewModel
+    public class EditUserViewModel
     {
         [Required(ErrorMessage = "Не вказано імені користувача")]
         [StringLength(25, MinimumLength = 8, ErrorMessage = "Довжина логіну повинна бути від 8 до 25 символів")]
         public string Login { get; set; }
 
-        [Required(ErrorMessage = "Вкажіть пароль")]
+        /*[Required]
         [DataType(DataType.Password)]
-        [StringLength(16, MinimumLength = 8, ErrorMessage = "Довжина паролю повинна бути від 8 до 16 символів")]
-        public string Password { get; set; }
-
-        [Required(ErrorMessage = "Підтвердіть пароль")]
-        [Compare("Password", ErrorMessage = "Паролі не співпадають")]
-        [DataType(DataType.Password)]
-        public string PasswordConfirm { get; set; }
+        [Microsoft.AspNetCore.Mvc.Remote(action: "CheckPass", controller: "Account", ErrorMessage = "Невірно введений пароль")]
+        public string Password { get; set; }*/
 
         [Required(ErrorMessage = "Не вказано поштової скриньки користувача")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
@@ -35,12 +29,7 @@ namespace restavratsia1.Models.ViewModels
 
         public string Surname { get; set; }
 
-        [Required(ErrorMessage = "Вас не ідентифіковано")]
-        public sbyte IsCompany { get; set; }
-
-        [StringLength(13,ErrorMessage = "Телефон повинен становити 13 символів")]
+        [StringLength(13, ErrorMessage = "Телефон повинен становити 13 символів")]
         public string Phone { get; set; }
-
-        public string Image { get; set; }
     }
 }

@@ -4,16 +4,13 @@ import MainPage from "./MainPage";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SignUpForm from "./SignUpForm";
-import OrderDesk from "./OrderDesk";
-import OrderInterface from "./OrderInterface";
-import CustomerOffice from "./CustomerOffice";
 import RoutesAuthorized from "./RoutesAuthorized";
 
 class Routes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authorized: window.localStorage.getItem("authorized"),
+      authorized: window.localStorage.getItem("userId"),
     };
   }
   render() {
