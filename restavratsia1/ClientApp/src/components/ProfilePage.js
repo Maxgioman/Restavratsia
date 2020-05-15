@@ -12,6 +12,8 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import ChangePassword from "./forms/ChangePassword";
+import request from "./Utils/RequestWrapper";
+import Redirect from "react-router-dom/es/Redirect";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -82,14 +84,41 @@ export default function ProfilePage(props) {
       phone: "",
       disableControl: true,
       btnClass: "d-none",
-      validator: false,
       deleteAccount: false,
       changePassForm: false,
+      redirect: false,
     },
     validationSchema,
     onSubmit: (values) => {
-      setFieldValue("validator", true);
-      if (values.validator) handleDisable();
+      let data = {
+        Login: values.username,
+        Email: values.email,
+        Phone: values.phone,
+      };
+      if (window.localStorage.getItem("isCompany") === "1") {
+        data = {
+          ...data,
+          Name: values.companyName,
+        };
+      } else {
+        data = {
+          ...data,
+          Name: values.name,
+          Surname: values.surname,
+        };
+      }
+      request({
+        method: "post",
+        url: "account/edit/" + window.localStorage.getItem("userId"),
+        data: data,
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      handleDisable();
     },
   });
 
@@ -118,7 +147,19 @@ export default function ProfilePage(props) {
     setFieldValue("changePassForm", false);
   };
   const accountOnDelete = () => {
-    //some actions
+    request({
+      method: "post",
+      url: "account/delete/" + window.localStorage.getItem("userId"),
+    })
+      .then((response) => {
+        window.localStorage.removeItem("userId");
+        window.localStorage.removeItem("username");
+        window.localStorage.removeItem("isCompany");
+        setFieldValue("redirect", true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const customer = () => {
@@ -168,6 +209,10 @@ export default function ProfilePage(props) {
   };
   let fields;
   props.usertype === "customer" ? (fields = customer()) : (fields = company());
+
+  if (values.redirect) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div>

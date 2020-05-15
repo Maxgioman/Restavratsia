@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
+using System;
 
 namespace restavratsia1
 {
@@ -125,6 +126,7 @@ namespace restavratsia1
             /*
              * 
              */
+            
 
             app.UseSpa(spa =>
             {
@@ -132,6 +134,7 @@ namespace restavratsia1
 
                 if (env.IsDevelopment())
                 {
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(120);
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });

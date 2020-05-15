@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useFormik } from "formik";
 import request from "../Utils/RequestWrapper";
 import {
@@ -19,6 +19,8 @@ export default function Signin(props) {
       Password: "",
       dialog: false,
       msg: "",
+      redirect: false,
+      redirectTo: "",
     },
     onSubmit: () => {
       request({
@@ -28,7 +30,17 @@ export default function Signin(props) {
       })
         .then((resp) => {
           if (resp.status === 200) {
-            window.localStorage.setItem("authorized", "1");
+            const data = resp.data.value[0].split(" ");
+            window.localStorage.setItem("userId", data[0]);
+            window.localStorage.setItem("username", data[1]);
+            window.localStorage.setItem("isCompany", data[2]);
+            if (data[2] === "1") {
+              setFieldValue("redirectTo", "/company-office/" + data[0]);
+              handleRedirect();
+            } else {
+              setFieldValue("redirectTo", "/customer-office/" + data[0]);
+              handleRedirect();
+            }
           }
         })
         .catch((err) => {
@@ -38,12 +50,20 @@ export default function Signin(props) {
     },
   });
 
+  const handleRedirect = () => {
+    setFieldValue("redirect", true);
+  };
+
   const handleDialogOpen = () => {
     setFieldValue("dialog", true);
   };
   const handleDialogClose = () => {
     setFieldValue("dialog", false);
   };
+
+  if (values.redirect) {
+    return <Redirect to={values.redirectTo} />;
+  }
 
   return (
     <form

@@ -18,7 +18,7 @@ class CustomerOrders extends Component {
     super(props);
     this.state = {
       cards: [],
-      username: "User1",
+      username: window.localStorage.getItem("username"),
       orderCreateFormOpen: false,
     };
   }

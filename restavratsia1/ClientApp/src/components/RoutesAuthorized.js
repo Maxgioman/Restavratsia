@@ -15,8 +15,8 @@ class RoutesAuthorized extends Component {
           <Route path={"/order_id/:id"}>
             <OrderInterface usertype="customer" />
           </Route>
-          <Route path={"/customer-office"} component={CustomerOffice} />
-          <Route path={"/company-office"} component={CustomerOffice} />
+          <Route path={"/customer-office/:id"} component={CustomerOffice} />
+          <Route path={"/company-office/:id"} component={CustomerOffice} />
           <Route path={"/order-desk"} component={OrderDesk} />
         </Switch>
       );

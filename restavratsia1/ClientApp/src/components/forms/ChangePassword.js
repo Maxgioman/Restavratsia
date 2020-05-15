@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Collapse from "@material-ui/core/Collapse/Collapse";
 import addPassConfirmMethod from "../Utils/GlobalMethods";
+import request from "../Utils/RequestWrapper";
 
 addPassConfirmMethod();
 
@@ -43,11 +44,29 @@ export default function ChangePassword() {
       passNewConfirm: "",
       alertError: false,
       alertSuccess: false,
+      errorMsg: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log(JSON.stringify(values));
-      handleAlert("alertSuccess", true);
+    onSubmit: () => {
+      request({
+        method: "post",
+        url: "account/edit/password/" + window.localStorage.getItem("userId"),
+        data: {
+          OldPassword: values.passOld,
+          NewPassword: values.passNew,
+          NewPasswordConfirm: values.passNewConfirm,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(response);
+            handleAlert("alertSuccess", true);
+          }
+        })
+        .catch((error) => {
+          setFieldValue("errorMsg", error.data[0].description);
+          handleAlert("alertError", true);
+        });
     },
   });
 
@@ -94,7 +113,7 @@ export default function ChangePassword() {
             </IconButton>
           }
         >
-          Password change failed!
+          Password change failed! {values.errorMsg}
         </Alert>
       ));
 
