@@ -186,7 +186,11 @@ export default function Signup(props) {
           }
         })
         .catch((err) => {
-          setFieldValue("msg", err.data.errors[0].description);
+          if (err.data.errors[0].description) {
+            setFieldValue("msg", err.data.errors[0].description);
+          } else {
+            setFieldValue("msg", "Something went wrong");
+          }
           setFieldValue(
             "btn",
             <Button

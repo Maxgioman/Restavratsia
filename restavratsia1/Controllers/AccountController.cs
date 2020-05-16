@@ -54,7 +54,7 @@ namespace restavratsia1.Controllers
             if (ModelState.IsValid)
             {
                 string name = (model.IsCompany == 0) ? model.Name + " " + model.Surname : model.Name;
-                WebImage photo = WebImage.GetImageFromRequest();
+                /*WebImage photo = WebImage.GetImageFromRequest();
                 var newFileName = "";
                 var imagePath = "";
                 var imageThumbPath = "";
@@ -67,7 +67,7 @@ namespace restavratsia1.Controllers
                     photo.Resize(width: 60, height: 60, preserveAspectRatio: true,
                        preventEnlarge: true);
                     photo.Save(@"~\" + imageThumbPath);
-                }
+                }*/
                 var user = new User()
                 {
                     Email = model.Email,
@@ -77,7 +77,7 @@ namespace restavratsia1.Controllers
                     Phone = model.Phone,
                     IsCompany = model.IsCompany,
                     UserName = model.Login,
-                    Image = imageThumbPath
+                    //Image = imageThumbPath
                 };
                 try
                 {

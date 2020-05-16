@@ -38,7 +38,7 @@ export default function CreateOrder(props) {
     validationSchema,
     onSubmit: (values) => {
       console.log(JSON.stringify(values));
-      handleAlert('alertSuccess', true);
+      handleAlert("alertSuccess", true);
     },
   });
 
@@ -130,10 +130,13 @@ export default function CreateOrder(props) {
           </Button>
         </div>
       </form>
-      <Collapse className='col-10' in={values.alertError || values.alertSuccess}>
+      <Collapse
+        className="col-10"
+        in={values.alertError || values.alertSuccess}
+      >
         <Alert
           severity="success"
-          className='col-12 text-align-center'
+          className="col-12 text-align-center"
           action={
             <IconButton
               aria-label="close"
@@ -151,7 +154,7 @@ export default function CreateOrder(props) {
         </Alert>
         <Alert
           severity="error"
-          className='col-12'
+          className="col-12"
           action={
             <IconButton
               aria-label="close"
