@@ -34,7 +34,7 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
-      <option name="program" value="$ProjectFileDir$/RestavrationService/ClientApp/node_modules/.bin/prettier" />
+      <option name="program" value="$ProjectFileDir$/restavratsia1/ClientApp/node_modules/.bin/prettier" />
       <option name="runOnExternalChanges" value="true" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="false" />
