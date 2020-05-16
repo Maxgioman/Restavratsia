@@ -54,6 +54,8 @@ namespace restavratsia1.Controllers
             if (ModelState.IsValid)
             {
                 string name = (model.IsCompany == 0) ? model.Name + " " + model.Surname : model.Name;
+<<<<<<< HEAD
+<<<<<<< HEAD
                 WebImage photo = WebImage.GetImageFromRequest();
                 var newFileName = "";
                 var imagePath = "";
@@ -68,6 +70,27 @@ namespace restavratsia1.Controllers
                        preventEnlarge: true);
                     photo.Save(@"~\" + imageThumbPath);
                 }
+=======
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
+                //WebImage photo = WebImage.GetImageFromRequest();
+                //var newFileName = "";
+                //var imagePath = "";
+                //var imageThumbPath = "";
+                //if (photo != null)
+                //{
+                //    newFileName = Guid.NewGuid().ToString() + "_" + System.IO.Path.GetFileName(photo.FileName);
+                //    imagePath = @"UploadImages\Users\" + newFileName;
+                //    photo.Save(@"~\" + imagePath);
+                //    imageThumbPath = @"images\thumbs\" + newFileName;
+                //    photo.Resize(width: 60, height: 60, preserveAspectRatio: true,
+                //       preventEnlarge: true);
+                //    photo.Save(@"~\" + imageThumbPath);
+                //}
+<<<<<<< HEAD
+>>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 var user = new User()
                 {
                     Email = model.Email,
@@ -77,13 +100,23 @@ namespace restavratsia1.Controllers
                     Phone = model.Phone,
                     IsCompany = model.IsCompany,
                     UserName = model.Login,
+<<<<<<< HEAD
+<<<<<<< HEAD
                     Image = imageThumbPath
+=======
+          //          Image = imageThumbPath
+>>>>>>> crud_order
+=======
+          //          Image = imageThumbPath
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 };
                 try
                 {
                     var result = _userManager.CreateAsync(user, model.Password).Result;
                     if (result.Succeeded)
                     {
+<<<<<<< HEAD
+<<<<<<< HEAD
                         //var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         //var confirmationLink = Url.Action("ConfirmEmail", "Account",
                         //    new { userId = user.Id, token = token }, Request.Scheme);
@@ -95,10 +128,30 @@ namespace restavratsia1.Controllers
                         return Ok(user);
                     }
                     else
+=======
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
+                        _signInManager.SignInAsync(user, false).Wait();
+                        return Ok(user);
+                    }
+                    else
+                    {
+<<<<<<< HEAD
+>>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                         return BadRequest(new AuthFailedRequestData
                         {
                             Errors = result.Errors
                         });
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                    }
+>>>>>>> crud_order
+=======
+                    }
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 }
                 catch (MySqlException ex)
                 {
@@ -125,6 +178,8 @@ namespace restavratsia1.Controllers
         {
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
+<<<<<<< HEAD
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 string mySelectQuery = "SELECT id, login, isCompany FROM user where id = '" + userId + "';";
                 MySqlConnection myConnection = new MySqlConnection("Server=localhost;port=3306;user=root;password=root;database=mydb");
@@ -140,6 +195,26 @@ namespace restavratsia1.Controllers
 
                 if (result.Succeeded)
                 {
+=======
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
+                var result = await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    string mySelectQuery = "SELECT id, login, isCompany FROM user where login = '" + model.Login + "';";
+                    MySqlConnection myConnection = new MySqlConnection("Server=localhost;port=3306;user=root;password=leomessi1021;database=mydb");
+                    MySqlCommand myCommand = new MySqlCommand(mySelectQuery, myConnection);
+                    myCommand.Connection.Open();
+                    var ob = myCommand.ExecuteReader();
+                    var arr = new List<string>();
+                    while (ob.Read())
+                    {
+                        arr.Add(ob[0].ToString() + " " + ob[1].ToString() + " " + ob[2].ToString());
+                    }
+<<<<<<< HEAD
+>>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                     return Ok(Json(arr));
                 }
                 return BadRequest(new AuthFailedResponse
@@ -147,8 +222,16 @@ namespace restavratsia1.Controllers
                     Message = "Invalid Login Attempt.Configuration of login and password is not valid"
                 });
             }
+<<<<<<< HEAD
+<<<<<<< HEAD
             else
                 return BadRequest(ModelState);
+=======
+            return BadRequest(ModelState);
+>>>>>>> crud_order
+=======
+            return BadRequest(ModelState);
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
         }
 
         [Microsoft.AspNetCore.Mvc.HttpGet]
@@ -229,7 +312,15 @@ namespace restavratsia1.Controllers
                     {
                         return Ok();
                     }
+<<<<<<< HEAD
+<<<<<<< HEAD
                         return BadRequest(result.Errors);
+=======
+                    return BadRequest(result.Errors);
+>>>>>>> crud_order
+=======
+                    return BadRequest(result.Errors);
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 }
                 else
                     return BadRequest(Json(id));
@@ -239,6 +330,8 @@ namespace restavratsia1.Controllers
     }
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
     //class Wrapper : ApiController
     //{
     //    public IHttpActionResult MakeJson(User modelObject)
@@ -254,6 +347,30 @@ namespace restavratsia1.Controllers
     //        return BadRequest(ModelState);
     //    }
     //}
+=======
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
+
+
+
+
+
+//class Wrapper : ApiController
+//{
+//    public IHttpActionResult MakeJson(User modelObject)
+//    {
+//        return Json(modelObject);
+//    }
+//    public IHttpActionResult ReturnExceptionResult(Exception ex)
+//    {
+//        return new ExceptionResult(ex, this);
+//    }
+//    public IHttpActionResult request(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary ob)
+//    {
+<<<<<<< HEAD
+>>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
 
 
 //{

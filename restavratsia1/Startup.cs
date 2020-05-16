@@ -8,7 +8,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
+<<<<<<< HEAD
+<<<<<<< HEAD
 using System;
+=======
+using restavratsia1.Models.Repositories;
+>>>>>>> crud_order
+=======
+using restavratsia1.Models.Repositories;
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
 
 namespace restavratsia1
 {
@@ -33,7 +41,15 @@ namespace restavratsia1
 
             services.AddIdentity<User, IdentityRole>(options =>
             {
+<<<<<<< HEAD
+<<<<<<< HEAD
                 options.User.RequireUniqueEmail = true;
+=======
+                options.User.RequireUniqueEmail = false;
+>>>>>>> crud_order
+=======
+                options.User.RequireUniqueEmail = false;
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 8;
@@ -47,6 +63,14 @@ namespace restavratsia1
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             ); services.AddRazorPages();
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            services.AddScoped<CustomRepository>();
+>>>>>>> crud_order
+=======
+            services.AddScoped<CustomRepository>();
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
             //{
             //    options.User.RequireUniqueEmail = false;
             //});
@@ -126,7 +150,13 @@ namespace restavratsia1
             /*
              * 
              */
+<<<<<<< HEAD
+<<<<<<< HEAD
             
+=======
+>>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
 
             app.UseSpa(spa =>
             {
@@ -134,7 +164,13 @@ namespace restavratsia1
 
                 if (env.IsDevelopment())
                 {
+<<<<<<< HEAD
+<<<<<<< HEAD
                     spa.Options.StartupTimeout = TimeSpan.FromSeconds(120);
+=======
+>>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
