@@ -55,6 +55,7 @@ namespace restavratsia1.Controllers
             {
                 string name = (model.IsCompany == 0) ? model.Name + " " + model.Surname : model.Name;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 WebImage photo = WebImage.GetImageFromRequest();
                 var newFileName = "";
                 var imagePath = "";
@@ -70,6 +71,8 @@ namespace restavratsia1.Controllers
                     photo.Save(@"~\" + imageThumbPath);
                 }
 =======
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 //WebImage photo = WebImage.GetImageFromRequest();
                 //var newFileName = "";
                 //var imagePath = "";
@@ -84,7 +87,10 @@ namespace restavratsia1.Controllers
                 //       preventEnlarge: true);
                 //    photo.Save(@"~\" + imageThumbPath);
                 //}
+<<<<<<< HEAD
 >>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 var user = new User()
                 {
                     Email = model.Email,
@@ -95,16 +101,21 @@ namespace restavratsia1.Controllers
                     IsCompany = model.IsCompany,
                     UserName = model.Login,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     Image = imageThumbPath
 =======
           //          Image = imageThumbPath
 >>>>>>> crud_order
+=======
+          //          Image = imageThumbPath
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 };
                 try
                 {
                     var result = _userManager.CreateAsync(user, model.Password).Result;
                     if (result.Succeeded)
                     {
+<<<<<<< HEAD
 <<<<<<< HEAD
                         //var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         //var confirmationLink = Url.Action("ConfirmEmail", "Account",
@@ -118,20 +129,29 @@ namespace restavratsia1.Controllers
                     }
                     else
 =======
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                         _signInManager.SignInAsync(user, false).Wait();
                         return Ok(user);
                     }
                     else
                     {
+<<<<<<< HEAD
 >>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                         return BadRequest(new AuthFailedRequestData
                         {
                             Errors = result.Errors
                         });
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     }
 >>>>>>> crud_order
+=======
+                    }
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 }
                 catch (MySqlException ex)
                 {
@@ -159,6 +179,7 @@ namespace restavratsia1.Controllers
             if (ModelState.IsValid)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 string mySelectQuery = "SELECT id, login, isCompany FROM user where id = '" + userId + "';";
                 MySqlConnection myConnection = new MySqlConnection("Server=localhost;port=3306;user=root;password=root;database=mydb");
@@ -175,6 +196,8 @@ namespace restavratsia1.Controllers
                 if (result.Succeeded)
                 {
 =======
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 var result = await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
@@ -188,7 +211,10 @@ namespace restavratsia1.Controllers
                     {
                         arr.Add(ob[0].ToString() + " " + ob[1].ToString() + " " + ob[2].ToString());
                     }
+<<<<<<< HEAD
 >>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                     return Ok(Json(arr));
                 }
                 return BadRequest(new AuthFailedResponse
@@ -197,11 +223,15 @@ namespace restavratsia1.Controllers
                 });
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
             else
                 return BadRequest(ModelState);
 =======
             return BadRequest(ModelState);
 >>>>>>> crud_order
+=======
+            return BadRequest(ModelState);
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
         }
 
         [Microsoft.AspNetCore.Mvc.HttpGet]
@@ -283,10 +313,14 @@ namespace restavratsia1.Controllers
                         return Ok();
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
                         return BadRequest(result.Errors);
 =======
                     return BadRequest(result.Errors);
 >>>>>>> crud_order
+=======
+                    return BadRequest(result.Errors);
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
                 }
                 else
                     return BadRequest(Json(id));
@@ -296,6 +330,7 @@ namespace restavratsia1.Controllers
     }
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     //class Wrapper : ApiController
     //{
@@ -313,6 +348,8 @@ namespace restavratsia1.Controllers
     //    }
     //}
 =======
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
 
 
 
@@ -330,7 +367,10 @@ namespace restavratsia1.Controllers
 //    }
 //    public IHttpActionResult request(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary ob)
 //    {
+<<<<<<< HEAD
 >>>>>>> crud_order
+=======
+>>>>>>> ea38abe4effa2ab39c014f7291dabece2e086cc9
 
 
 //{
