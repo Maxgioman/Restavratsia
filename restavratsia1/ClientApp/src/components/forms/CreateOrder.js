@@ -13,6 +13,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Collapse from "@material-ui/core/Collapse";
 import * as Yup from "yup";
+import request from "../Utils/RequestWrapper";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string()
@@ -37,7 +38,10 @@ export default function CreateOrder(props) {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log(JSON.stringify(values));
+      /*request({
+        method: "post",
+        url: "",
+      });*/
       handleAlert("alertSuccess", true);
     },
   });

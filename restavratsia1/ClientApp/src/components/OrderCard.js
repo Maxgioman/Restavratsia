@@ -31,7 +31,7 @@ class OrderCard extends Component {
     this.state.usertype === "customer"
       ? this.setState({
           ...this.state,
-          ref: "/order_id/" + this.state.id,
+          ref: "/order/" + this.state.id,
         })
       : this.setState({
           ...this.state,

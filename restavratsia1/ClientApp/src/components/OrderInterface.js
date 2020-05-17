@@ -64,7 +64,11 @@ class OrderInterface extends Component {
         className="height-100 m-1 flex-column-start_top align-items-start"
       >
         <CardActions>
-          <Link id="order-link-back" className="link" to={"/customer-office"}>
+          <Link
+            id="order-link-back"
+            className="link"
+            to={"/customer-office/" + window.localStorage.getItem("userId")}
+          >
             <Button size="medium" color="primary">
               <FontAwesomeIcon icon={faArrowLeft} className="mr-1" /> back to
               all orders
