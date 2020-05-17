@@ -30,21 +30,42 @@ export default function Signin(props) {
       })
         .then((resp) => {
           if (resp.status === 200) {
-            const data = resp.data.value[0].split(" ");
-            window.localStorage.setItem("userId", data[0]);
-            window.localStorage.setItem("username", data[1]);
-            window.localStorage.setItem("isCompany", data[2]);
-            if (data[2] === "1") {
-              setFieldValue("redirectTo", "/company-office/" + data[0]);
-              handleRedirect();
+            console.log(resp.data);
+            window.localStorage.setItem("userId", resp.data.value.id);
+            window.localStorage.setItem("username", resp.data.value.username);
+            window.localStorage.setItem("isCompany", resp.data.value.isCompany);
+            if (resp.data.value.isCompany === "1") {
+              setFieldValue(
+                "redirectTo",
+                "/company-office/" + resp.data.value.id
+              );
+              setTimeout(() => {
+                handleRedirect();
+              }, 700);
             } else {
-              setFieldValue("redirectTo", "/customer-office/" + data[0]);
-              handleRedirect();
+              setFieldValue(
+                "redirectTo",
+                "/customer-office/" + resp.data.value.id
+              );
+              setTimeout(() => {
+                handleRedirect();
+              }, 700);
             }
           }
         })
         .catch((err) => {
-          setFieldValue("msg", err.data.message);
+          if (err.data.errors) {
+            if (err.data.errors.Login && err.data.errors.Password)
+              setFieldValue(
+                "msg",
+                err.data.errors.Login[0] + ". " + err.data.errors.Password[0]
+              );
+            else if (err.data.errors.Login)
+              setFieldValue("msg", err.data.errors.Login[0]);
+            else setFieldValue("msg", err.data.errors.Password[0]);
+          } else if (err.data.message) {
+            setFieldValue("msg", err.data.message);
+          }
           handleDialogOpen();
         });
     },

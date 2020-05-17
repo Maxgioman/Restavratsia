@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { TextField, Button } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert/Alert";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import CloseIcon from "@material-ui/icons/Close";
 import Collapse from "@material-ui/core/Collapse/Collapse";
 import addPassConfirmMethod from "../Utils/GlobalMethods";
 import request from "../Utils/RequestWrapper";
@@ -59,12 +59,14 @@ export default function ChangePassword() {
       })
         .then((response) => {
           if (response.status === 200) {
-            console.log(response);
             handleAlert("alertSuccess", true);
           }
         })
         .catch((error) => {
-          setFieldValue("errorMsg", error.data[0].description);
+          if (error.data.errors) {
+            if (error.data.errors.OldPassword)
+              setFieldValue("errorMsg", error.data.errors.OldPassword[0]);
+          } else setFieldValue("errorMsg", error.data[0].description);
           handleAlert("alertError", true);
         });
     },

@@ -16,6 +16,7 @@ class Header extends Component {
     for (let i = 0; i < this.props.elements_href.length; i++) {
       elems.push(
         <a
+          key={i}
           href={this.props.hrefs[this.props.elements_href[i]]}
           className="menu-link"
         >
@@ -32,6 +33,7 @@ class Header extends Component {
       if (this.props.func_for_link) {
         elems.push(
           <Link
+            key={i}
             to={this.props.links[this.props.elements_link[i]]}
             className="menu-link"
             onClick={this.props.func_for_link[this.props.elements_link[i]]}
@@ -42,6 +44,7 @@ class Header extends Component {
       } else {
         elems.push(
           <Link
+            key={i}
             to={this.props.links[this.props.elements_link[i]]}
             className="menu-link"
           >

@@ -186,8 +186,13 @@ export default function Signup(props) {
           }
         })
         .catch((err) => {
-          if (err.data.errors[0].description) {
-            setFieldValue("msg", err.data.errors[0].description);
+          console.log(err);
+          if (err.data.errors) {
+            if (err.data.errors.Login) {
+              setFieldValue("msg", err.data.errors.Login[0]);
+            } else {
+              setFieldValue("msg", err.data.errors[0].description);
+            }
           } else {
             setFieldValue("msg", "Something went wrong");
           }

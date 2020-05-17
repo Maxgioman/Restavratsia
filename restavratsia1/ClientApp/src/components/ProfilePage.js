@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import {
   Button,
@@ -8,12 +8,16 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  IconButton,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import ChangePassword from "./forms/ChangePassword";
 import request from "./Utils/RequestWrapper";
-import Redirect from "react-router-dom/es/Redirect";
+import { Redirect } from "react-router-dom";
+import Collapse from "@material-ui/core/Collapse/Collapse";
+import Alert from "@material-ui/lab/Alert/Alert";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -86,6 +90,10 @@ export default function ProfilePage(props) {
       btnClass: "d-none",
       deleteAccount: false,
       changePassForm: false,
+      alertSuccess: false,
+      alertError: false,
+      errorMsg: "",
+      alertShow: false,
       redirect: false,
     },
     validationSchema,
@@ -113,15 +121,61 @@ export default function ProfilePage(props) {
         data: data,
       })
         .then((response) => {
-          console.log(response);
+          handleAlert("alertSuccess", true);
+          setTimeout(() => {
+            handleAlertShow(true);
+          }, 700);
+          handleDisable();
+          setTimeout(() => {
+            handleAlertShow(false);
+          }, 5000);
         })
         .catch((error) => {
-          console.log(error);
+          if (error.data) setFieldValue("errorMsg", error.data[0].description);
+          else setFieldValue("errorMsg", "Something went wrong");
+          handleAlert("alertError", true);
+          setTimeout(() => {
+            handleAlertShow(false);
+          }, 5000);
         });
-      handleDisable();
     },
   });
 
+  function data() {
+    request({
+      method: "get",
+      url: "/account/profile/" + window.localStorage.getItem("userId"),
+    })
+      .then((resp) => {
+        const data = resp.data.value;
+        setFieldValue("username", window.localStorage.getItem("username"));
+        setFieldValue("email", data.email);
+        setFieldValue("phone", data.phone);
+        if (window.localStorage.getItem("isCompany") === "1") {
+          setFieldValue("companyName", data.name);
+        } else {
+          setFieldValue("name", data.name.split(" ")[0]);
+          setFieldValue("surname", data.name.split(" ")[1]);
+        }
+        console.log(resp);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  useEffect(data, []);
+
+  const handleAlert = (type, value) => {
+    setFieldValue(type, value);
+  };
+  const handleAlertShow = (value) => {
+    setFieldValue("alertShow", value);
+  };
+  const handleCancel = () => {
+    data();
+    handleDisable();
+  };
   const handleEnable = () => {
     setFieldValue("disableControl", false);
     setFieldValue("btnClass", "m-1 ml-4 mr-4");
@@ -210,10 +264,52 @@ export default function ProfilePage(props) {
   let fields;
   props.usertype === "customer" ? (fields = customer()) : (fields = company());
 
+  let alert;
+  values.alertSuccess
+    ? (alert = (
+        <Alert
+          severity="success"
+          className="col-12 text-align-center"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                handleAlert("alertSuccess", false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+        >
+          Profile successfully updated!
+        </Alert>
+      ))
+    : (alert = (
+        <Alert
+          severity="error"
+          className="col-12"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                handleAlert("alertError", false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+        >
+          Password change failed! {values.errorMsg}
+        </Alert>
+      ));
+
   if (values.redirect) {
     return <Redirect to="/" />;
   }
-
   return (
     <div>
       <div className="d-flex-spacebtw">
@@ -343,9 +439,12 @@ export default function ProfilePage(props) {
             <p className="errorValidationText">{errors.phone}</p>
           ) : null}
         </div>
+        <Collapse className="col-10" in={values.alertShow}>
+          {alert}
+        </Collapse>
         <div className="flex-row-center mb-1 mt-3">
           <div className={values.btnClass}>
-            <Button variant="outlined" color="primary" onClick={handleDisable}>
+            <Button variant="outlined" color="primary" onClick={handleCancel}>
               cancel
             </Button>
           </div>

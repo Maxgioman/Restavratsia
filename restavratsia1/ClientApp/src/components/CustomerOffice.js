@@ -3,6 +3,10 @@ import Header from "./header";
 import CustomerOfficeMenu from "./CustomerOfficeMenu";
 
 class CustomerOffice extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   log_out = () => {
     window.localStorage.removeItem("userId");
     window.localStorage.removeItem("username");
@@ -18,7 +22,7 @@ class CustomerOffice extends Component {
           func_for_link={{ "log out": this.log_out }}
         />
         <div id="cust-office" className="position-fixed-with-header col-12">
-          <CustomerOfficeMenu />
+          <CustomerOfficeMenu info={this.state} />
         </div>
       </div>
     );

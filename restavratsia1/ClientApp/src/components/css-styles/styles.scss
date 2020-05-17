@@ -20,6 +20,11 @@ html.scroll-smooth {
   scroll-behavior: smooth;
 }
 
+input:disabled,
+input[disabled]{
+  color:black;
+}
+
 .errorValidationText{
   color: red;
   font-size: 15px;
