@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faListAlt } from "@fortawesome/free-solid-svg-icons";
 import ProfilePage from "./ProfilePage";
 import CustomerOrders from "./CustomerOrders";
+import OrderDesk from "./OrderDesk";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomerOfficeMenu(props) {
+export default function UserOfficeMenu(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -61,6 +62,16 @@ export default function CustomerOfficeMenu(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  let orders;
+  let labels = ["My Profile"];
+  if (props.usertype === "customer") {
+    orders = <CustomerOrders />;
+    labels.push("My Orders");
+  } else {
+    orders = <OrderDesk />;
+    labels.push("Orders");
+  }
 
   return (
     <div className={classes.root}>
@@ -76,21 +87,21 @@ export default function CustomerOfficeMenu(props) {
           >
             <Tab
               icon={<FontAwesomeIcon icon={faUserCircle} />}
-              label="My Profile"
+              label={labels[0]}
               {...a11yProps(0)}
             />
             <Tab
               icon={<FontAwesomeIcon icon={faListAlt} />}
-              label="My Orders"
+              label={labels[1]}
               {...a11yProps(1)}
             />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <ProfilePage usertype="customer" />
+          <ProfilePage usertype={props.usertype} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <CustomerOrders />
+          {orders}
         </TabPanel>
       </Container>
     </div>

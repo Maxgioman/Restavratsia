@@ -1,6 +1,5 @@
 import React from "react";
 import { Checkbox, FormGroup, FormControlLabel } from "@material-ui/core";
-import grey from "@material-ui/core/colors/grey";
 
 function OrderDeskFilters() {
   const [state, setState] = React.useState({
@@ -20,7 +19,6 @@ function OrderDeskFilters() {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const color = grey["900"];
   const specOptions = [
     "facade (buildings)",
     "interior work (buildings)",
@@ -43,7 +41,7 @@ function OrderDeskFilters() {
             checked={state.checked1}
             onChange={handleChange}
             name="checked1"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[0]}
@@ -54,7 +52,7 @@ function OrderDeskFilters() {
             checked={state.checked2}
             onChange={handleChange}
             name="checked2"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[1]}
@@ -65,7 +63,7 @@ function OrderDeskFilters() {
             checked={state.checked3}
             onChange={handleChange}
             name="checked3"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[2]}
@@ -76,7 +74,7 @@ function OrderDeskFilters() {
             checked={state.checked4}
             onChange={handleChange}
             name="checked4"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[3]}
@@ -87,7 +85,7 @@ function OrderDeskFilters() {
             checked={state.checked5}
             onChange={handleChange}
             name="checked5"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[4]}
@@ -98,7 +96,7 @@ function OrderDeskFilters() {
             checked={state.checked6}
             onChange={handleChange}
             name="checked6"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[5]}
@@ -109,7 +107,7 @@ function OrderDeskFilters() {
             checked={state.checked7}
             onChange={handleChange}
             name="checked7"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[6]}
@@ -120,7 +118,7 @@ function OrderDeskFilters() {
             checked={state.checked8}
             onChange={handleChange}
             name="checked8"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[7]}
@@ -131,7 +129,7 @@ function OrderDeskFilters() {
             checked={state.checked9}
             onChange={handleChange}
             name="checked9"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[8]}
@@ -142,7 +140,7 @@ function OrderDeskFilters() {
             checked={state.checked10}
             onChange={handleChange}
             name="checked10"
-            color={color}
+            color="default"
           />
         }
         label={specOptions[9]}

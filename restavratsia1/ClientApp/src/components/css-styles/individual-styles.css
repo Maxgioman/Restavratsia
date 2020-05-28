@@ -8,6 +8,7 @@
 
 #order-iface {
   background-image: url("images/poloski_chernyie_seryie_belyie_linii_32.jpg");
+  min-height: 100vh;
 }
 
 #text-sec3 {
@@ -142,19 +143,17 @@
   }
 }
 #order-desk {
-  top: 12%;
-  position: fixed;
-  height: 88%;
+  height: 100%;
 }
 
 #orders-container {
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: lightgrey;
 }
 
 #order-filters {
   min-width: 216px;
+  overflow-y: auto;
 }
 
 #card-box {
@@ -173,7 +172,7 @@
 }
 
 #order-if {
-  margin-top: 8%;
+  margin-top: 85px;
 }
 
 #sec4-text {
@@ -427,7 +426,7 @@
 }
 
 #profile-title {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .profile-chapters {

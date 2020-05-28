@@ -157,10 +157,10 @@ export default function ProfilePage(props) {
           setFieldValue("name", data.name.split(" ")[0]);
           setFieldValue("surname", data.name.split(" ")[1]);
         }
-        console.log(resp);
+        //console.log(resp);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   }
 
@@ -276,7 +276,7 @@ export default function ProfilePage(props) {
               color="inherit"
               size="small"
               onClick={() => {
-                handleAlert("alertSuccess", false);
+                handleAlertShow(false);
               }}
             >
               <CloseIcon fontSize="inherit" />
@@ -296,7 +296,7 @@ export default function ProfilePage(props) {
               color="inherit"
               size="small"
               onClick={() => {
-                handleAlert("alertError", false);
+                handleAlertShow(false);
               }}
             >
               <CloseIcon fontSize="inherit" />

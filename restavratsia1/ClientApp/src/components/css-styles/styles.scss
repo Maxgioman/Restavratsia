@@ -36,7 +36,7 @@ input[disabled]{
 header {
   position: fixed;
   background-color: black;
-  height: 12%;
+  height: 80px;
   width: 100%;
   margin: 0;
   opacity: 0.85;
@@ -793,11 +793,7 @@ body.overflow-hidden {
   }
 }
 @media screen and (max-width: 768px) {
-  header > nav > a {
-    visibility: hidden;
-  }
-
-  footer {
+    footer {
     height: 460px;
   }
 
@@ -1443,6 +1439,5 @@ body.overflow-hidden {
 .ml-5 {
   margin-left: 3rem;
 }
-
 
 /*# sourceMappingURL=styles.css.map */

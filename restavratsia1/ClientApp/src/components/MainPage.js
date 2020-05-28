@@ -11,6 +11,7 @@ import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "./footer";
 import Header from "./header";
+import BackToTop from "react-back-to-top";
 
 class MainPage extends Component {
   render() {
