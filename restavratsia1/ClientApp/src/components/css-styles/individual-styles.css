@@ -1,13 +1,22 @@
 #block1-sec1 {
-  background-image: url("images/lestnitsa_arhitektura_zdanie_152333_1920x1080.jpg");
+    background-image: url("images/fon1.jpg");
+}
+
+#sec2 {
+    background-image: url("images/fon3.png");
 }
 
 #sec3 {
-  background-image: url("images/architecture_structure_symmetry_bw_117554_1920x1080.jpg");
+    background-image: url("images/fon2.jpg");
+}
+
+#sec4 {
+    background-image: url("images/fon4.jpg");
 }
 
 #order-iface {
-  background-image: url("images/poloski_chernyie_seryie_belyie_linii_32.jpg");
+  background-image: url("images/fon_orders.jpg");
+  min-height: 100vh;
 }
 
 #text-sec3 {
@@ -142,19 +151,17 @@
   }
 }
 #order-desk {
-  top: 12%;
-  position: fixed;
-  height: 88%;
+  height: 100%;
 }
 
 #orders-container {
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: lightgrey;
 }
 
 #order-filters {
   min-width: 216px;
+  overflow-y: auto;
 }
 
 #card-box {
@@ -173,7 +180,7 @@
 }
 
 #order-if {
-  margin-top: 8%;
+  margin-top: 85px;
 }
 
 #sec4-text {
@@ -218,6 +225,7 @@
   height: 90%;
   flex-direction: column;
   align-items: flex-start;
+  color: silver;
 }
 
 #text1-1 {
@@ -242,7 +250,7 @@
 }
 
 #login-section {
-  background-image: url("images/an_vision-3Ic5nzXzOf4-unsplash (1).jpg");
+    background-image: url("images/fon7.jpg");
 }
 
 #login-container {
@@ -323,7 +331,7 @@
 }
 
 #reg-body {
-  background-image: url("images/257.jpg");
+    background-image: url("images/fon8.png");
 }
 
 #reg-cust-body,
@@ -376,7 +384,7 @@
 }
 
 #sec5 {
-  background-image: url("images/dark-city.jpg");
+    background-image: url("images/fon5.webp");
 }
 
 #sec5-textblock {
@@ -384,6 +392,11 @@
   max-width: inherit;
   background-color: white;
   border: none;
+}
+
+#profile{
+    border: 2px solid red;
+    border-radius:20px; 
 }
 
 .sign-btn {
@@ -413,11 +426,11 @@
 }
 
 #reg-section {
-  background-image: url("images/black-and-white-architecture-photography-1920x1200.jpg");
+    background-image: url("images/fon6.jpg");
 }
 
 #cust-office {
-  height: 88%;
+  height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -427,7 +440,7 @@
 }
 
 #profile-title {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .profile-chapters {

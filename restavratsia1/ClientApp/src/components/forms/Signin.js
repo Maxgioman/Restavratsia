@@ -30,11 +30,10 @@ export default function Signin(props) {
       })
         .then((resp) => {
           if (resp.status === 200) {
-            console.log(resp.data);
             window.localStorage.setItem("userId", resp.data.value.id);
             window.localStorage.setItem("username", resp.data.value.username);
             window.localStorage.setItem("isCompany", resp.data.value.isCompany);
-            if (resp.data.value.isCompany === "1") {
+            if (resp.data.value.isCompany === 1) {
               setFieldValue(
                 "redirectTo",
                 "/company-office/" + resp.data.value.id
@@ -42,7 +41,7 @@ export default function Signin(props) {
               setTimeout(() => {
                 handleRedirect();
               }, 700);
-            } else {
+            } else if (resp.data.value.isCompany === 0) {
               setFieldValue(
                 "redirectTo",
                 "/customer-office/" + resp.data.value.id

@@ -11,6 +11,7 @@ import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Footer from "./footer";
 import Header from "./header";
+import BackToTop from "react-back-to-top";
 
 class MainPage extends Component {
   render() {
@@ -64,14 +65,8 @@ class MainPage extends Component {
         </section>
         <section id="sec2" className="section lg-section-height-2x">
           <div className="container col-10 flex-row-center flex-lg-column">
-            <div className="flex-center col-5 col-lg-9 col-md-11 col-sm-11">
-              <img
-                id="img-sec2-block1"
-                src={require("./css-styles/images/img-sec2-block1.png")}
-              />
-            </div>
-            <div className="col-7 col-lg-9 col-md-12 col-sm-12">
-              <div id="text-block" className="flex-center">
+                    <div className="col-12 col-lg-9 col-md-12 col-sm-12">
+                        <div id="text-block" className="flex-center">
                 <p id="text1-1" className="text text-title">
                   {" "}
                   Something about{" "}
@@ -139,7 +134,7 @@ class MainPage extends Component {
         </section>
         <section id="sec4" className="section  lg-section-height-2x ">
           <div className="container flex-row-center col-10 col-md-11 col-sm-12 flex-lg-column">
-            <div className="col-7 flex-center height-inherit col-sm-12 col-lg-11">
+            <div className="col-12 flex-center height-inherit col-sm-12 col-lg-11">
               <div
                 id="sec4-text"
                 className="col-11 text-block text-box-black flex-column-start"
@@ -158,14 +153,6 @@ class MainPage extends Component {
                 <p className="text pb-4">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 </p>
-              </div>
-            </div>
-            <div className="col-5 flex-center col-sm-12 col-lg-11 margin-bottom">
-              <div className="">
-                <img
-                  className="elem-fit"
-                  src={require("./css-styles/images/hong-kong-buildings-airplane-modern-architecture.jpeg")}
-                />
               </div>
             </div>
           </div>

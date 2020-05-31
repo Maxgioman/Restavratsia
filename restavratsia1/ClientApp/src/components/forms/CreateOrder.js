@@ -22,8 +22,7 @@ const validationSchema = Yup.object().shape({
     .required("this field is required"),
   description: Yup.string()
     .min(20, "too short(min 20 characters)")
-    .max(500, "too long(max 500 characters)")
-    .required("this field is required"),
+    .max(500, "too long(max 500 characters)"),
   specialization: Yup.string().required("this field is required"),
 });
 
@@ -35,14 +34,35 @@ export default function CreateOrder(props) {
       specialization: "",
       alertError: false,
       alertSuccess: false,
+      alertShow: false,
     },
     validationSchema,
-    onSubmit: (values) => {
-      /*request({
+    onSubmit: () => {
+      request({
         method: "post",
-        url: "",
-      });*/
-      handleAlert("alertSuccess", true);
+        url: "ads/add",
+        data: {
+          Title: values.title,
+          Description: values.description,
+          Specialization: values.specialization,
+          UserId: window.localStorage.getItem("userId"),
+          Image: "",
+        },
+      })
+        .then((resp) => {
+          if (resp.status >= 200 && resp.status < 300) {
+            handleAlert("alertSuccess", true);
+            setTimeout(() => {
+              handleAlertShow(true);
+            }, 500);
+          }
+        })
+        .catch((err) => {
+          handleAlert("alertError", true);
+          setTimeout(() => {
+            handleAlertShow(true);
+          }, 500);
+        });
     },
   });
 
@@ -65,6 +85,52 @@ export default function CreateOrder(props) {
   const handleAlert = (type, value) => {
     setFieldValue(type, value);
   };
+  const handleAlertShow = (value) => {
+    setFieldValue("alertShow", value);
+  };
+
+  let alert;
+  values.alertSuccess
+    ? (alert = (
+        <Alert
+          severity="success"
+          className="col-12 text-align-center"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                handleAlertShow(false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+        >
+          Order successfully created! You can close this form.
+        </Alert>
+      ))
+    : (alert = (
+        <Alert
+          severity="error"
+          className="col-12"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                handleAlertShow(false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+        >
+          Some errors occurred creation process.
+        </Alert>
+      ));
 
   return (
     <div id="create-order-form" className="col-12 flex-column-center">
@@ -134,46 +200,8 @@ export default function CreateOrder(props) {
           </Button>
         </div>
       </form>
-      <Collapse
-        className="col-10"
-        in={values.alertError || values.alertSuccess}
-      >
-        <Alert
-          severity="success"
-          className="col-12 text-align-center"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                handleAlert("alertSuccess", false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-        >
-          New order created! You can close creation window.
-        </Alert>
-        <Alert
-          severity="error"
-          className="col-12"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                handleAlert("alertError", false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-        >
-          Order creation failed!
-        </Alert>
+      <Collapse className="col-10" in={values.alertShow}>
+        {alert}
       </Collapse>
     </div>
   );

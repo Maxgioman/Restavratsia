@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import OrderInterface from "./OrderInterface";
-import CustomerOffice from "./CustomerOffice";
+import UserOffice from "./UserOffice";
 import OrderDesk from "./OrderDesk";
 import { Switch, Route } from "react-router-dom";
 
@@ -15,8 +15,12 @@ class RoutesAuthorized extends Component {
           <Route path={"/order/:id"}>
             <OrderInterface usertype="customer" />
           </Route>
-          <Route path={"/customer-office/:id"} component={CustomerOffice} />
-          <Route path={"/company-office/:id"} component={CustomerOffice} />
+          <Route path={"/customer-office/:id"}>
+            <UserOffice usertype={"customer"} />
+          </Route>
+          <Route path={"/company-office/:id"}>
+            <UserOffice usertype={"company"} />
+          </Route>
           <Route path={"/order-desk"} component={OrderDesk} />
         </Switch>
       );

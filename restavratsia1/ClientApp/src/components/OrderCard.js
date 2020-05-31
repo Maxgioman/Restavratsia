@@ -22,6 +22,7 @@ class OrderCard extends Component {
       id: this.props.id,
       title: this.props.title,
       body: this.props.body,
+      specialization: this.props.specialization,
       ref: null,
       usertype: this.props.usertype,
     };
@@ -57,7 +58,7 @@ class OrderCard extends Component {
                 component="img"
                 alt="some image"
                 className="card-img"
-                image={require("./css-styles/images/1bfabe3ab7a5a66739e564dec2c8a4d0.jpg")}
+                image={require("./css-styles/images/order.jpg")}
                 title={title}
               />
               <CardContent>
@@ -72,19 +73,19 @@ class OrderCard extends Component {
                     color="textSecondary"
                     component="p"
                   >
-                    {this.state.id}
+                    {this.state.specialization}
                   </Typography>
                 </ThemeProvider>
               </CardContent>
             </div>
-            <div className="align-items-end">
-              <CardActions>
-                <Button size="small" color="primary" onClick={this.handleClick}>
-                  Learn More
-                </Button>
-              </CardActions>
-            </div>
           </CardActionArea>
+          <div className="align-items-end">
+            <CardActions>
+              <Button size="small" color="primary" onClick={this.handleClick}>
+                Learn More
+              </Button>
+            </CardActions>
+          </div>
         </Card>
       </div>
     );

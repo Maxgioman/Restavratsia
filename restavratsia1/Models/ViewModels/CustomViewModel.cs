@@ -12,8 +12,7 @@ namespace restavratsia1.Models.ViewModels
         [StringLength(50, ErrorMessage = "Занадто довгий заголовок")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Вкажіть вміст")]
-        [StringLength(200, ErrorMessage = "Занадто довгий тест")]
+        [StringLength(500, ErrorMessage = "Занадто довгий тест")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Вкажіть тип замовлення")]
         public string Specialization { get; set; }

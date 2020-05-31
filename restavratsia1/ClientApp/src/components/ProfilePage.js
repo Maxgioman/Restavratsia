@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
+import red from '@material-ui/core/colors/red';
 import {
   Button,
   TextField,
@@ -17,7 +18,10 @@ import request from "./Utils/RequestWrapper";
 import { Redirect } from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse/Collapse";
 import Alert from "@material-ui/lab/Alert/Alert";
-import CloseIcon from "@material-ui/icons/Close";
+import CloseIcon from "@material-ui/icons/Close"; 
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -157,10 +161,10 @@ export default function ProfilePage(props) {
           setFieldValue("name", data.name.split(" ")[0]);
           setFieldValue("surname", data.name.split(" ")[1]);
         }
-        console.log(resp);
+        //console.log(resp);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   }
 
@@ -276,7 +280,7 @@ export default function ProfilePage(props) {
               color="inherit"
               size="small"
               onClick={() => {
-                handleAlert("alertSuccess", false);
+                handleAlertShow(false);
               }}
             >
               <CloseIcon fontSize="inherit" />
@@ -296,7 +300,7 @@ export default function ProfilePage(props) {
               color="inherit"
               size="small"
               onClick={() => {
-                handleAlert("alertError", false);
+                handleAlertShow(false);
               }}
             >
               <CloseIcon fontSize="inherit" />
@@ -319,8 +323,8 @@ export default function ProfilePage(props) {
         <div className="mr-3 flex-row-center">
           <div className="mr-1 ml-1">
             <Button
-              variant="outlined"
-              color="primary"
+              variant="contained"
+              color="secondary"
               component="span"
               onClick={handleDeleteAccConfirmOpen}
             >
@@ -361,14 +365,15 @@ export default function ProfilePage(props) {
         className="d-flex flex-dir-column align-items-center"
         onSubmit={handleSubmit}
       >
-        <div className="col-12 flex-center">
+        <div className="col-12 mb-2 flex-center">
           <Avatar
             alt="profile photo"
-            src={require("./css-styles/images/profile-photo.png")}
+            src={require("./css-styles/images/ava.jpg")}
             className={style.avatar}
           />
-        </div>
-        <div className="col-7 flex-column col-md-12">
+              </div>
+              <div id="profile" className="col-7 p-4 flex-column-center">
+        <div className="col-12 flex-column col-md-12">
           <h3 className="profile-chapters text-default mb-1 mt-1">
             Account info
           </h3>
@@ -410,7 +415,7 @@ export default function ProfilePage(props) {
             </DialogActions>
           </Dialog>
         </div>
-        <div className="col-7 flex-column col-md-12">
+        <div className="col-12 flex-column col-md-12">
           <h3 className="profile-chapters text-default mt-4 mb-1">
             Personal info
           </h3>
@@ -438,13 +443,14 @@ export default function ProfilePage(props) {
           {errors.phone && touched.phone ? (
             <p className="errorValidationText">{errors.phone}</p>
           ) : null}
-        </div>
+                  </div>
+                  </div>
         <Collapse className="col-10" in={values.alertShow}>
           {alert}
         </Collapse>
         <div className="flex-row-center mb-1 mt-3">
           <div className={values.btnClass}>
-            <Button variant="outlined" color="primary" onClick={handleCancel}>
+            <Button variant="contained" color="secondary" onClick={handleCancel}>
               cancel
             </Button>
           </div>

@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import Header from "./header";
-import CustomerOfficeMenu from "./CustomerOfficeMenu";
+import UserOfficeMenu from "./UserOfficeMenu";
 
-class CustomerOffice extends Component {
+class UserOffice extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   log_out = () => {
     window.localStorage.removeItem("userId");
     window.localStorage.removeItem("username");
@@ -10,6 +14,8 @@ class CustomerOffice extends Component {
   };
 
   render() {
+    let part = <UserOfficeMenu usertype={this.props.usertype} />;
+
     return (
       <div>
         <Header
@@ -18,11 +24,11 @@ class CustomerOffice extends Component {
           func_for_link={{ "log out": this.log_out }}
         />
         <div id="cust-office" className="position-fixed-with-header col-12">
-          <CustomerOfficeMenu />
+          {part}
         </div>
       </div>
     );
   }
 }
 
-export default CustomerOffice;
+export default UserOffice;

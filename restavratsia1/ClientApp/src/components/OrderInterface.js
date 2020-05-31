@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +15,7 @@ import {
 import { withRouter } from "react-router-dom";
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import Header from "./header";
+import request from "./Utils/RequestWrapper";
 
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
@@ -31,15 +31,17 @@ class OrderInterface extends Component {
 
   componentDidMount = async () => {
     let id = this.props.match.params.id;
-    let response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts/" + id
-    );
+    let response = await request({
+      url: "ads/get_order/" + id,
+    });
     if (response.status === 200) {
       this.setState({
         ...this.state,
         id: id,
         title: response.data.title,
-        body: response.data.body,
+        specialization: response.data.specializationSpecialization,
+        body: response.data.description,
+        date: response.data.dateOfOrder,
       });
     } else
       this.setState({
@@ -70,8 +72,8 @@ class OrderInterface extends Component {
             to={"/customer-office/" + window.localStorage.getItem("userId")}
           >
             <Button size="medium" color="primary">
-              <FontAwesomeIcon icon={faArrowLeft} className="mr-1" /> back to
-              all orders
+              <FontAwesomeIcon icon={faArrowLeft} className="mr-1" /> back to my
+              orders
             </Button>
           </Link>
         </CardActions>
@@ -80,13 +82,15 @@ class OrderInterface extends Component {
           alt="some image"
           id="img-hw"
           className="flex-center"
-          image={require("./css-styles/images/1bfabe3ab7a5a66739e564dec2c8a4d0.jpg")}
+          image={require("./css-styles/images/order.jpg")}
           title={props.title}
         />
         <UpdateOrder
+          id={this.state.id}
           title={props.title}
           description={props.body}
-          specialization={props.id}
+          specialization={props.specialization}
+          date={props.date}
         />
       </Card>
     );
@@ -99,7 +103,11 @@ class OrderInterface extends Component {
         className="height-100 m-1 flex-column-start_top align-items-start"
       >
         <CardActions>
-          <Link id="order-link-back" className="link" to={"/order-desk"}>
+          <Link
+            id="order-link-back"
+            className="link"
+            to={"/company-office/" + window.localStorage.getItem("userId")}
+          >
             <Button size="medium" color="primary">
               <FontAwesomeIcon icon={faArrowLeft} className="mr-1" /> back to
               all orders
@@ -111,7 +119,7 @@ class OrderInterface extends Component {
           alt="some image"
           id="img-hw"
           className="flex-center"
-          image={require("./css-styles/images/1bfabe3ab7a5a66739e564dec2c8a4d0.jpg")}
+          image={require("./css-styles/images/order.jpg")}
           title={props.title}
         />
         <CardContent>
@@ -119,12 +127,21 @@ class OrderInterface extends Component {
             <Typography gutterBottom variant="h2" component="h3">
               {props.title}
             </Typography>
-            <Typography gutterBottom variant="h5" component="h3">
-              {props.id}
+            <Typography gutterBottom variant="h6" component="h3">
+              {props.date.substring(0, 10)}
             </Typography>
-            <Typography gutterBottom variant="h5" component="h3">
-              {props.body}
-            </Typography>
+            <div className="col-12 mt-1 mb-1">
+              <h3 className="mt-2 mb-2">Specialization</h3>
+              <Typography gutterBottom variant="h6" component="h3">
+                {props.specialization}
+              </Typography>
+            </div>
+            <div className="col-12 mt-1 mb-1">
+              <h3 className="mt-2 mb-2">Description</h3>
+              <Typography gutterBottom variant="h6" component="h3">
+                {props.body}
+              </Typography>
+            </div>
           </ThemeProvider>
         </CardContent>
         <CardActions className="d-flex align-items-center col-12">
@@ -142,7 +159,8 @@ class OrderInterface extends Component {
       const props = {
         title: this.state.title,
         body: this.state.body,
-        id: this.state.id,
+        specialization: this.state.specialization,
+        date: this.state.date,
       };
       if (this.props.usertype === "customer")
         view = this.OrderViewCustomer(props);

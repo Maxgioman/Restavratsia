@@ -18,30 +18,42 @@ namespace restavratsia1.Models.Repositories
             this.context = context;
         }
 
-        public List<Custom> GetCustoms(User user)
+        public List<Custom> GetCustoms(string userId)
         {
             var listOfCustoms = new List<Custom>();
             try
             {
-                listOfCustoms = (from custom in context.Custom
-                                 where custom.CheckedByModer == 1
-                                 orderby custom.Title
-                                 select new Custom
-                                 {
-                                     Image = custom.Image,
-                                     Title = custom.Title,
-                                     SpecializationSpecialization = custom.SpecializationSpecialization
-                                 }).ToList();
-                user = context.User.Where(x => x.Id == user.Id).FirstOrDefault();
+                User user = context.User.Where(x => x.Id == userId).FirstOrDefault();
                 if (user.IsCompany == 0)
                 {
-                    foreach (var obj in listOfCustoms)
-                    {
-                        if (obj.UserId != user.Id)
-                        {
-                            listOfCustoms.Remove(obj);
-                        }
-                    }
+                    listOfCustoms = (from custom in context.Custom
+                                     where custom.CheckedByModer == 1
+                                     && custom.UserId == userId
+                                     orderby custom.Title
+                                     select new Custom
+                                     {
+                                         Image = custom.Image,
+                                         Title = custom.Title,
+                                         SpecializationSpecialization = custom.SpecializationSpecialization,
+                                         UserId = custom.UserId,
+                                         Id = custom.Id,
+                                         DateOfOrder = custom.DateOfOrder
+                                     }).ToList();
+                }
+                else
+                {
+                    listOfCustoms = (from custom in context.Custom
+                                     where custom.CheckedByModer == 1
+                                     orderby custom.Title
+                                     select new Custom
+                                     {
+                                         Image = custom.Image,
+                                         Title = custom.Title,
+                                         SpecializationSpecialization = custom.SpecializationSpecialization,
+                                         UserId = custom.UserId,
+                                         Id = custom.Id,
+                                         DateOfOrder = custom.DateOfOrder
+                                     }).ToList();
                 }
             }
             catch (Exception)
@@ -50,6 +62,7 @@ namespace restavratsia1.Models.Repositories
             }
             return listOfCustoms;
         }
+
         public async Task<Custom> PostCustom(Custom custom)
         {
             context.Custom.Add(custom);
@@ -63,10 +76,18 @@ namespace restavratsia1.Models.Repositories
         }
 
 
-        public async Task<Custom> UpdateCustom(Custom custom)
+        public async Task<Custom> UpdateCustom(Custom custom, int id)
         {
-            context.Entry(custom).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            try
+            {
+                custom.Id = id;
+                context.Entry(custom).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
             return custom;
         }
 

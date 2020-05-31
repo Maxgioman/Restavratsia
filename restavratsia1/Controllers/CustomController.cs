@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using restavratsia1.Models;
 using restavratsia1.Models.Repositories;
 using restavratsia1.Models.ViewModels;
+using MySql.Data.MySqlClient;
 
 namespace restavratsia1.Controllers
 {
@@ -23,17 +24,17 @@ namespace restavratsia1.Controllers
         }
 
         // GET: api/Article
-        [HttpGet("get_all")]
-        public IActionResult GetAll([FromBody]User user)
+        [HttpGet("get_all/{id}")]
+        public IActionResult GetAll(string id)
         {
-            var listOfCustoms = repository.GetCustoms(user);
-            if(listOfCustoms == null || listOfCustoms.Count == 0)
+            var listOfCustoms = repository.GetCustoms(id);
+            if (listOfCustoms == null)
             {
-                return NotFound("No such user in system");
+                return NotFound("No customs");
             }
             return Ok(listOfCustoms);
         }
-        
+
         [HttpGet("get_order/{id}")]
         public async Task<ActionResult<List<Custom>>> GetById(int id)
         {
@@ -65,13 +66,21 @@ namespace restavratsia1.Controllers
 
         // PUT: api/Article/5
         [HttpPut("alter/{id}")]
-        public async Task<IActionResult> Put(int id,[FromBody]Custom custom)
+        public async Task<IActionResult> Put(int id, [FromBody]Custom custom)
         {
-            if(custom.Id!= id)
+            await repository.UpdateCustom(custom, id);
+            if (custom.Id != id)
             {
                 return BadRequest();
             }
-            await repository.UpdateCustom(custom);
+            string mySelectQuery = "update custom set title='" + custom.Title +
+                                   "', description='" + custom.Description +
+                                   "', image='" + custom.Image + "'" +
+                                   "where id=" + custom.Id + ";";
+            MySqlConnection myConnection = new MySqlConnection("Server=localhost;port=3306;user=root;password=root;database=mydb");
+            MySqlCommand myCommand = new MySqlCommand(mySelectQuery, myConnection);
+            myCommand.Connection.Open();
+            myCommand.ExecuteReader();
             return NoContent();
         }
 

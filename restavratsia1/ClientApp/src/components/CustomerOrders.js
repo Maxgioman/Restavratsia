@@ -12,6 +12,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import OrderCard from "./OrderCard";
 import CreateOrder from "./forms/CreateOrder";
+import request from "./Utils/RequestWrapper";
 
 class CustomerOrders extends Component {
   constructor(props) {
@@ -34,27 +35,28 @@ class CustomerOrders extends Component {
   });
 
   componentDidMount = async () => {
-    {
-      let cards = [];
-      let response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
-      if (response.status === 200) {
-        response.data.map((elem) => {
-          cards.push(
-            <OrderCard
-              usertype="customer"
-              id={elem.id}
-              title={elem.title}
-              body={elem.body}
-            />
-          );
-        });
-      } else {
-        return "error occured";
-      }
-      this.setState({ cards: cards.slice(0, 29) });
+    let cards = [];
+    let response = await request({
+      method: "get",
+      url: "ads/get_all/" + window.localStorage.getItem("userId"),
+    });
+    if (response.data) {
+      response.data.map((elem, index) => {
+        cards.push(
+          <OrderCard
+            key={index}
+            usertype="customer"
+            id={elem.id}
+            title={elem.title}
+            body={elem.description}
+            specialization={elem.specializationSpecialization}
+          />
+        );
+      });
+    } else {
+      cards = "error occured";
     }
+    this.setState({ cards: cards });
   };
 
   render() {
