@@ -7,6 +7,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "@jest/globals": "latest",
     "@material-ui/core": "^4.9.11",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.52",
@@ -24,7 +25,6 @@
     "react-alert": "^7.0.0",
     "react-alert-template-basic": "^1.0.0",
     "react-back-to-top": "^1.0.3",
-    "react-back-to-top-button": "0.0.14",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-form": "^4.0.1",
@@ -36,6 +36,7 @@
     "react-scrolltop-button": "^0.1.6",
     "react-swipeable-views": "^0.13.9",
     "react-tap-event-plugin": "^3.0.3",
+    "react-test-renderer": "^16.13.1",
     "reactstrap": "^8.4.1",
     "universal-react-logger": "^1.0.6",
     "yup": "^0.28.3"
@@ -60,5 +61,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nyc": "^15.1.0"
   }
 }

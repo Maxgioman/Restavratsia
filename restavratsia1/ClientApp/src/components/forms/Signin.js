@@ -29,6 +29,7 @@ export default function Signin(props) {
         data: { Login: values.Login, Password: values.Password },
       })
         .then((resp) => {
+          //console.log(resp);
           if (resp.status === 200) {
             window.localStorage.setItem("userId", resp.data.value.id);
             window.localStorage.setItem("username", resp.data.value.username);
